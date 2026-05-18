@@ -259,23 +259,24 @@
         <input id="expectedReturnDate" type="date" placeholder="تاريخ الرجوع المتوقع">
        
 
-        <select id="extraServices" onchange="calculateEstimate()">
-          <option value="0">خدمات إضافية (اختياري)</option>
-          <option value="500">+ أكسجين (500 دج)</option>
-          <option value="400">+ كرسي متحرك (400 دج)</option>
-          <option value="600">+ ممرض مرافق (600 دج)</option>
-          <option value="300">+ أسرة نقل (300 دج)</option>
-          <option value="800">+ سيارة إسعاف مجهزة عناية (800 دج)</option>
-           <div class="full">
-          <div class="label">صورة هوية مقدم الطلب (أمامية)</div>
-          <input id="burialIdFrontImage" type="file" accept="image/*" required>
-        </div>
+       <select id="extraServices" onchange="calculateEstimate()">
+  <option value="0">خدمات إضافية (اختياري)</option>
+  <option value="500">+ أكسجين (500 دج)</option>
+  <option value="400">+ كرسي متحرك (400 دج)</option>
+  <option value="600">+ ممرض مرافق (600 دج)</option>
+  <option value="300">+ أسرة نقل (300 دج)</option>
+  <option value="800">+ سيارة إسعاف مجهزة عناية (800 دج)</option>
+</select>
 
-        <div class="full">
-          <div class="label" id="burialBackLabel">صورة هوية مقدم الطلب (خلفية)</div>
-          <input id="burialIdBackImage" type="file" accept="image/*">
-        </div>
-        </select>
+<div class="full">
+  <div class="label">صورة هوية مقدم الطلب (أمامية)</div>
+  <input id="idFrontImage" type="file" accept="image/*" required>
+</div>
+
+<div class="full">
+  <div class="label" id="backLabel">صورة الهوية من الخلف</div>
+  <input id="idBackImage" type="file" accept="image/*">
+</div>
       </div>
     </div>
 
