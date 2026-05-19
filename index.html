@@ -1,18 +1,18 @@
 
 
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <base target="_top">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
+
+<html dir="rtl" lang="ar">
+<head><base target="_top"/><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;family=Lora:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><style>:root{
       --primary:#2986B0;
+      --primary-light:#7ED6D1;
       --accent:#F59E0B;
+      --gold-brown:#A86417;
+      --ink:#222222;
+      --surface:#F5F5F5;
+      --gold-brown:#A86417;
+      --ink:#222222;
+      --surface:#F5F5F5;
       --bg:#f6f8fb;
       --border:#e5e7eb;
       --danger:#b91c1c;
@@ -24,8 +24,8 @@
     }
     body{
       margin:0;
-      background:linear-gradient(135deg,#e0f2fe,#fff);
-      color:#1e293b
+      background:linear-gradient(135deg,#E9F7F8,#F5F5F5,#fff);
+      color:var(--ink)
     }
     .wrap{
       max-width:1100px;
@@ -37,7 +37,7 @@
       border-radius:26px;
       padding:24px;
       box-shadow:0 16px 45px #0001;
-      border:1px solid #dbeafe
+      border:1px solid #CDEEEF; border-top:5px solid var(--accent)
     }
     .head{
       display:flex;
@@ -57,7 +57,7 @@
       font-size:24px
     }
     .status{
-      color:#64748b;
+      color:#596575;
       font-size:13px
     }
     .grid{
@@ -114,11 +114,11 @@
     }
     .hint{
       font-size:12px;
-      color:#64748b;
+      color:#596575;
       margin-top:5px
     }
     .info-box{
-      background:#e0f2fe;
+      background:#E9F7F8;
       border-radius:16px;
       padding:16px;
       margin-bottom:20px;
@@ -168,206 +168,30 @@
       display:block;
       margin-bottom:5px
     }
-  </style>
+    @media (max-width: 640px){
+      .wrap{margin:0;padding:8px}
+      .card{border-radius:16px;padding:14px}
+      .head{align-items:flex-start;gap:10px}
+      .logo{width:56px;height:56px}
+      .head h1{font-size:18px;line-height:1.4}
+      .grid{grid-template-columns:1fr;gap:10px}
+      input,select,textarea{font-size:14px;padding:12px;border-radius:12px}
+      .service-toggle{flex-direction:column}
+      .submit{font-size:15px;padding:13px}
+    }
+</style>
 </head>
 <body>
-<div class="wrap">
-  <div class="card">
-    <div class="head">
-      <img id="logo" class="logo" src="https://drive.google.com/thumbnail?id=1mN39uinRmOQGj04B5OfC9ZTPtlXyF1mb&sz=256">
-      <div>
-        <h1>طلب خدمة إسعاف أو نقل طبي</h1>
-        <div class="status">جمعية الجواهر بقمار - نظام الحجوزات الإلكتروني</div>
-        <div class="hint">يرجى إدخال بيانات المريض/المتوفى والمرافقين ونوع الخدمة بدقة</div>
-      </div>
-    </div>
-
-    <div class="info-box">
-      <strong>📋 معلومات هامة:</strong><br>
-      • سيتم التواصل معك لتأكيد الحجز خلال 30 دقيقة.<br>
-      • الأسعار تعتمد على نوع الخدمة والمسافة.<br>
-      • يمكنك إرفاق صور الهوية والوصفات الطبية.
-    </div>
-
-    <!-- اختيار نوع الخدمة -->
-    <div class="service-toggle">
-      <div class="service-btn active" id="medicalServiceBtn" onclick="selectService('medical')">
-        <div class="medical-icon">🚑</div>
-        نقل طبي / إسعاف
-      </div>
-      <div class="service-btn" id="burialServiceBtn" onclick="selectService('burial')">
-        <div class="burial-icon">⚰️</div>
-        نقل جثة
-      </div>
-    </div>
-
-    <!-- نموذج الخدمة الطبية -->
-    <div id="medicalSection" class="service-section active">
-      <div class="grid">
-        <select id="itemId" required>
-          <option value="">اختر سيارة الإسعاف / نوع الخدمة</option>
-        </select>
-
-        <select id="tripType" required onchange="toggleStateField(); calculateEstimate()">
-          <option value="">نوع النقل</option>
-          <option value="داخل الولاية">🚑 داخل الولاية</option>
-          <option value="خارج الولاية">🚑 خارج الولاية</option>
-        </select>
-
-        <div id="stateDiv" style="display:none">
-          <input id="destinationState" placeholder="الولاية المتجه إليها" onchange="calculateEstimate()">
-        </div>
-
-        <div id="distanceDiv" style="display:none">
-          <input id="distanceKm" type="number" placeholder="المسافة التقريبية (كم)" onchange="calculateEstimate()">
-        </div>
-
-        <input id="borrower" placeholder="اسم طالب الحجز" required>
-        <input id="contact" type="tel" placeholder="رقم الهاتف (للتواصل)" required>
-        <input id="address" placeholder="عنوان الانطلاق / مكان المريض" required>
-        <input id="patientName" placeholder="اسم المريض" required>
-        <input id="relationship" placeholder="صلة القرابة (أب - أم - زوج - ...)" required>
-
-        <select id="patientCondition">
-          <option value="مستقر">🟢 حالة مستقرة</option>
-          <option value="طارئ">🟠 حالة طارئة</option>
-          <option value="عناية مركزة">🔴 يحتاج عناية مركزة</option>
-          <option value="طريح الفراش">🛏️ طريح الفراش</option>
-        </select>
-
-        <input id="companionName" placeholder="اسم المرافق (إن وجد)">
-        <input id="companionPhone" type="tel" placeholder="هاتف المرافق">
-        <input id="companionRelation" placeholder="صلة المرافق بالمريض">
-
-        <select id="identityType" required onchange="toggleBackHint()">
-          <option value="">نوع الهوية</option>
-          <option>بطاقة التعريف الوطنية</option>
-          <option>رخصة سياقة</option>
-          <option>جواز سفر</option>
-          <option>بطاقة طالب</option>
-          <option>أخرى</option>
-        </select>
-
-        <input id="identityNo" placeholder="رقم الهوية" required>
-        <input id="identityIssuer" placeholder="الهوية الصادرة عن الجهة" required>
-        <input id="identityIssueDate" type="date" required>
-
-        <input id="city" placeholder="البلدية / المدينة" required>
-        <input id="loanDate" type="date" required>
-        <input id="appointmentTime" type="time" required>
-        <input id="destination" placeholder="الوجهة / المستشفى / العيادة" required>
-        <input id="expectedReturnDate" type="date" placeholder="تاريخ الرجوع المتوقع">
-       
-
-       <select id="extraServices" onchange="calculateEstimate()">
-  <option value="0">خدمات إضافية (اختياري)</option>
-  <option value="500">+ أكسجين (500 دج)</option>
-  <option value="400">+ كرسي متحرك (400 دج)</option>
-  <option value="600">+ ممرض مرافق (600 دج)</option>
-  <option value="300">+ أسرة نقل (300 دج)</option>
-  <option value="800">+ سيارة إسعاف مجهزة عناية (800 دج)</option>
-</select>
-
-<div class="full">
-  <div class="label">صورة هوية مقدم الطلب (أمامية)</div>
-  <input id="idFrontImage" type="file" accept="image/*" required>
-</div>
-
-<div class="full">
-  <div class="label" id="backLabel">صورة الهوية من الخلف</div>
-  <input id="idBackImage" type="file" accept="image/*">
-</div>
-      </div>
-    </div>
-
-    <!-- نموذج نقل الجثة -->
-    <div id="burialSection" class="service-section">
-      <div class="grid">
-        <select id="burialItemId" required>
-          <option value="">اختر سيارة نقل الجثث</option>
-        </select>
-
-        <select id="burialTripType" required onchange="toggleBurialStateField(); calculateBurialEstimate()">
-          <option value="">نوع النقل</option>
-          <option value="داخل الولاية">⚰️ داخل الولاية</option>
-          <option value="خارج الولاية">⚰️ خارج الولاية</option>
-        </select>
-
-        <div id="burialStateDiv" style="display:none">
-          <input id="burialDestinationState" placeholder="الولاية المتجه إليها" onchange="calculateBurialEstimate()">
-        </div>
-
-        <div id="burialDistanceDiv" style="display:none">
-          <input id="burialDistanceKm" type="number" placeholder="المسافة التقريبية (كم)" onchange="calculateBurialEstimate()">
-        </div>
-
-        <input id="burialBorrower" placeholder="اسم مقدم الطلب" required>
-        <input id="burialContact" type="tel" placeholder="رقم الهاتف (للتواصل)" required>
-        <input id="burialAddress" placeholder="عنوان الانطلاق" required>
-        
-        <input id="deceasedName" placeholder="اسم المتوفى" required>
-        <input id="causeOfDeath" placeholder="سبب الوفاة" required>
-        <input id="placeOfDeath" placeholder="مكان الوفاة" required>
-        <input id="burialPlace" placeholder="مكان الدفن" required>
-        
-        <input id="applicantName" placeholder="اسم مقدم الطلب" required>
-        <input id="applicantRelation" placeholder="صلة مقدم الطلب بالمتوفى" required>
-        
-        <input id="dateOfDeath" type="date" placeholder="تاريخ الوفاة">
-        <input id="burialDate" type="date" placeholder="تاريخ الدفن">
-        <input id="burialAppointmentTime" type="time" placeholder="وقت النقل">
-
-        <select id="burialIdentityType" required onchange="toggleBurialBackHint()">
-          <option value="">نوع هوية مقدم الطلب</option>
-          <option>بطاقة التعريف الوطنية</option>
-          <option>رخصة سياقة</option>
-          <option>جواز سفر</option>
-          <option>أخرى</option>
-        </select>
-
-        <input id="burialIdentityNo" placeholder="رقم الهوية" required>
-        <input id="burialIdentityIssuer" placeholder="الهوية الصادرة عن الجهة" required>
-        <input id="burialIdentityIssueDate" type="date" required>
-
-        <input id="burialCity" placeholder="البلدية / المدينة" required>
-        <input id="burialLoanDate" type="date" required>
-        <input id="burialExpectedReturnDate" type="date" placeholder="تاريخ الانتهاء المتوقع">
-
-        <div class="full">
-          <div class="label">صورة هوية مقدم الطلب (أمامية)</div>
-          <input id="burialIdFrontImage" type="file" accept="image/*" required>
-        </div>
-
-        <div class="full">
-          <div class="label" id="burialBackLabel">صورة هوية مقدم الطلب (خلفية)</div>
-          <input id="burialIdBackImage" type="file" accept="image/*">
-        </div>
-      </div>
-    </div>
-
-    <!-- عرض السعر التقديري (لنقل الجثة) -->
-    <div id="burialPricePreview" class="price-preview">
-      💰 <strong>السعر التقديري لنقل الجثة:</strong> <span id="burialEstimatedPrice">0</span> دج
-    </div>
-
-    <!-- عرض السعر التقديري (للخدمة الطبية) -->
-    <div id="medicalPricePreview" class="price-preview">
-      💰 <strong>السعر التقديري:</strong> <span id="medicalEstimatedPrice">0</span> دج
-    </div>
-
-    <!-- ملاحظات إضافية مشتركة -->
-    <div id="commonNotes">
-      <textarea id="notes" class="full" placeholder="ملاحظات إضافية: حالة المريض، طابق السكن، مصعد، أي تفاصيل مهمة..."></textarea>
-    </div>
-
-    <button class="submit" onclick="submitRequest()">📤 إرسال الطلب</button>
-    <div id="msg"></div>
-  </div>
-</div>
-
-<script>
+<div class="wrap"><div class="card"><div class="head"><img class="logo" id="logo" src="https://drive.google.com/thumbnail?id=1mN39uinRmOQGj04B5OfC9ZTPtlXyF1mb&amp;sz=256"/><div><h1>طلب خدمة إسعاف أو نقل طبي</h1><div class="status">جمعية الجواهر بقمار - نظام الحجوزات الإلكتروني | رقم الاعتماد: 0005588999999 | الهاتف: 032233174</div><div class="hint">يرجى إدخال بيانات المريض/المتوفى والمرافقين ونوع الخدمة بدقة</div></div></div><div class="info-box"><strong> معلومات هامة:</strong><br/>• سيتم التواصل معك لتأكيد الحجز خلال 30 دقيقة.<br/>• الأسعار تعتمد على نوع الخدمة والمسافة.<br/>• يمكنك إرفاق صور الهوية والوصفات الطبية.
+    </div><!-- اختيار نوع الخدمة --><div class="service-toggle"><div class="service-btn active" id="medicalServiceBtn" onclick="selectService('medical')"><div class="medical-icon"></div>نقل طبي / إسعاف
+      </div><div class="service-btn" id="burialServiceBtn" onclick="selectService('burial')"><div class="burial-icon">️</div>نقل جثة
+      </div></div><!-- نموذج الخدمة الطبية --><div class="service-section active" id="medicalSection"><div class="grid"><select id="itemId" required=""><option value="">اختر سيارة الإسعاف / نوع الخدمة</option></select><select id="tripType" onchange="toggleStateField(); calculateEstimate()" required=""><option value="">نوع النقل</option><option value="داخل الولاية"> داخل الولاية</option><option value="خارج الولاية"> خارج الولاية</option></select><div id="stateDiv" style="display:none"><input id="destinationState" onchange="calculateEstimate()" placeholder="الولاية المتجه إليها"/></div><div id="distanceDiv" style="display:none"><input id="distanceKm" onchange="calculateEstimate()" placeholder="المسافة التقريبية (كم)" type="number"/></div><input id="borrower" placeholder="اسم طالب الحجز" required=""/><input id="contact" placeholder="رقم الهاتف (للتواصل)" required="" type="tel"/><input id="patientName" placeholder="اسم المريض" required=""/><input id="relationship" placeholder="صلة القرابة (أب - أم - زوج - ...)" required=""/><select id="patientCondition"><option value="مستقر"> حالة مستقرة</option><option value="طارئ"> حالة طارئة</option><option value="عناية مركزة"> يحتاج عناية مركزة</option><option value="طريح الفراش">️ طريح الفراش</option></select><input id="address" placeholder="عنوان الانطلاق / مكان المريض" required=""/><input id="city" placeholder="البلدية / المدينة" required=""/><input id="destination" placeholder="الوجهة / المستشفى / العيادة" required=""/><input id="loanDate" required="" type="date"/><input id="appointmentTime" required="" type="time"/><input id="expectedReturnDate" placeholder="تاريخ الرجوع المتوقع" type="date"/><select id="identityType" onchange="toggleBackHint()" required=""><option value="">نوع الهوية</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>بطاقة طالب</option><option>أخرى</option></select><input id="identityNo" placeholder="رقم الهوية" required=""/><input id="identityIssuer" placeholder="الهوية الصادرة عن الجهة" required=""/><input id="identityIssueDate" required="" type="date"/><div class="full"><div class="label">صورة هوية المريض (أمامية)</div><input accept="image/*" id="patientIdFrontImage" required="" type="file"/></div><div class="full"><div class="label">صورة هوية المريض (خلفية)</div><input accept="image/*" id="patientIdBackImage" required="" type="file"/></div><input id="companionName" placeholder="اسم المرافق (إن وجد)"/><input id="companionPhone" placeholder="هاتف المرافق" type="tel"/><input id="companionRelation" placeholder="صلة المرافق بالمريض"/><div class="full"><div class="label">صورة هوية المرافق (أمامية)</div><input accept="image/*" id="companionIdFrontImage" type="file"/><div class="hint">إجباري عند إدخال اسم المرافق.</div></div><div class="full"><div class="label">صورة هوية المرافق (خلفية)</div><input accept="image/*" id="companionIdBackImage" type="file"/><div class="hint">إجباري عند إدخال اسم المرافق.</div></div><select id="extraServices" onchange="calculateEstimate()"><option value="0">خدمات إضافية (اختياري)</option><option value="500">+ أكسجين (500 دج)</option><option value="400">+ كرسي متحرك (400 دج)</option><option value="600">+ ممرض مرافق (600 دج)</option><option value="300">+ أسرة نقل (300 دج)</option><option value="800">+ سيارة إسعاف مجهزة عناية (800 دج)</option>
+</select></div></div><!-- نموذج نقل الجثة --><div class="service-section" id="burialSection"><div class="grid"><select id="burialItemId" required=""><option value="">اختر سيارة نقل الجثث</option></select><select id="burialTripType" onchange="toggleBurialStateField(); calculateBurialEstimate()" required=""><option value="">نوع النقل</option><option value="داخل الولاية">️ داخل الولاية</option><option value="خارج الولاية">️ خارج الولاية</option></select><div id="burialStateDiv" style="display:none"><input id="burialDestinationState" onchange="calculateBurialEstimate()" placeholder="الولاية المتجه إليها"/></div><div id="burialDistanceDiv" style="display:none"><input id="burialDistanceKm" onchange="calculateBurialEstimate()" placeholder="المسافة التقريبية (كم)" type="number"/></div><input id="burialBorrower" placeholder="اسم مقدم الطلب" required=""/><input id="burialContact" placeholder="رقم الهاتف (للتواصل)" required="" type="tel"/><input id="burialAddress" placeholder="عنوان الانطلاق" required=""/><input id="deceasedName" placeholder="اسم المتوفى" required=""/><input id="causeOfDeath" placeholder="سبب الوفاة" required=""/><input id="placeOfDeath" placeholder="مكان الوفاة" required=""/><input id="burialPlace" placeholder="مكان الدفن" required=""/><input id="applicantName" placeholder="اسم مقدم الطلب" required=""/><input id="applicantRelation" placeholder="صلة مقدم الطلب بالمتوفى" required=""/><input id="dateOfDeath" placeholder="تاريخ الوفاة" type="date"/><input id="burialDate" placeholder="تاريخ الدفن" type="date"/><input id="burialAppointmentTime" placeholder="وقت النقل" type="time"/><select id="burialIdentityType" onchange="toggleBurialBackHint()" required=""><option value="">نوع هوية مقدم الطلب</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="burialIdentityNo" placeholder="رقم الهوية" required=""/><input id="burialIdentityIssuer" placeholder="الهوية الصادرة عن الجهة" required=""/><input id="burialIdentityIssueDate" required="" type="date"/><input id="burialCity" placeholder="البلدية / المدينة" required=""/><input id="burialLoanDate" required="" type="date"/><input id="burialExpectedReturnDate" placeholder="تاريخ الانتهاء المتوقع" type="date"/><div class="full"><div class="label">صورة هوية مقدم الطلب (أمامية)</div><input accept="image/*" id="burialIdFrontImage" required="" type="file"/></div><div class="full"><div class="label" id="burialBackLabel">صورة هوية مقدم الطلب (خلفية)</div><input accept="image/*" id="burialIdBackImage" type="file"/></div></div></div><!-- عرض السعر التقديري (لنقل الجثة) --><div class="price-preview" id="burialPricePreview"><strong>السعر التقديري لنقل الجثة:</strong> <span id="burialEstimatedPrice">0</span> دج
+    </div><!-- عرض السعر التقديري (للخدمة الطبية) --><div class="price-preview" id="medicalPricePreview"><strong>السعر التقديري:</strong> <span id="medicalEstimatedPrice">0</span> دج
+    </div><!-- ملاحظات إضافية مشتركة --><div id="commonNotes"><textarea class="full" id="notes" placeholder="ملاحظات إضافية: حالة المريض، طابق السكن، مصعد، أي تفاصيل مهمة..."></textarea></div><button class="submit" onclick="submitRequest()"> إرسال الطلب</button><div id="msg"></div></div>
+</div><script>
 // رابط Google Apps Script
-const GS_URL = "https://script.google.com/macros/s/AKfycbzCLlEpNWyiJLD0lYR8g3l1GdAe2CZTXLX6isnI1V59XIGv1a1QPssDa0zA5G29pZA29w/exec";
+const GS_URL = "https://script.google.com/macros/s/AKfycbyt_EXTw1ENBWH5kgAYhxJg84AkXC6YwtUB4Wpzsr5Siwq2xF1Tmr4uQxuIb0OvCjql/exec";
 
 let currentService = 'medical';
 
@@ -509,7 +333,8 @@ async function calculateBurialEstimate() {
 }
 
 async function compressImage(inputId) {
-  const file = document.getElementById(inputId).files[0];
+  const input = document.getElementById(inputId);
+  const file = input && input.files && input.files.length ? input.files[0] : null;
   if (!file) return '';
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -532,6 +357,17 @@ async function compressImage(inputId) {
     };
     reader.readAsDataURL(file);
   });
+}
+
+
+function hasFile(inputId) {
+  const input = document.getElementById(inputId);
+  return !!(input && input.files && input.files.length && input.files[0]);
+}
+
+function getValue(inputId, fallback = '') {
+  const el = document.getElementById(inputId);
+  return el ? el.value : fallback;
 }
 
 function validateMedical() {
@@ -557,6 +393,15 @@ function validateMedical() {
       setMsg('يرجى إدخال المسافة التقريبية', 'error');
       return false;
     }
+  }
+  if (!hasFile('patientIdFrontImage') || !hasFile('patientIdBackImage')) {
+    setMsg('يرجى رفع صور هوية المريض من الأمام والخلف', 'error');
+    return false;
+  }
+  const hasCompanion = document.getElementById('companionName').value.trim() || document.getElementById('companionPhone').value.trim() || document.getElementById('companionRelation').value.trim();
+  if (hasCompanion && (!hasFile('companionIdFrontImage') || !hasFile('companionIdBackImage'))) {
+    setMsg('يرجى رفع صور هوية المرافق من الأمام والخلف', 'error');
+    return false;
   }
   return true;
 }
@@ -589,7 +434,7 @@ function validateBurial() {
   
   const identityType = document.getElementById('burialIdentityType').value;
   const backImage = document.getElementById('burialIdBackImage');
-  if (identityType !== 'جواز سفر' && (!backImage.files || !backImage.files[0])) {
+  if (identityType !== 'جواز سفر' && !hasFile('burialIdBackImage')) {
     setMsg('يرجى رفع صورة الهوية من الخلف', 'error');
     return false;
   }
@@ -661,8 +506,12 @@ async function submitRequest() {
           costEstimate,
           'ملاحظات: ' + document.getElementById('notes').value
         ].filter(Boolean).join(' | '),
-        idFrontImage: await compressImage('idFrontImage'),
-        idBackImage: await compressImage('idBackImage')
+        idFrontImage: await compressImage('patientIdFrontImage'),
+        idBackImage: await compressImage('patientIdBackImage'),
+        patientIdFrontImage: await compressImage('patientIdFrontImage'),
+        patientIdBackImage: await compressImage('patientIdBackImage'),
+        companionIdFrontImage: await compressImage('companionIdFrontImage'),
+        companionIdBackImage: await compressImage('companionIdBackImage')
       };
     } else {
       const tripType = document.getElementById('burialTripType').value;
@@ -720,7 +569,7 @@ async function submitRequest() {
     }
     
     const result = await apiCall('submitExternalLoanRequest', [data]);
-    setMsg('✅ تم إرسال الطلب بنجاح! رقم الحجز: ' + (result.requestNo || '') + '<br>سيتم التواصل معكم قريباً لتأكيد الخدمة.', 'ok');
+    setMsg(' تم إرسال الطلب بنجاح! رقم الحجز: ' + (result.requestNo || '') + '<br>سيتم التواصل معكم قريباً لتأكيد الخدمة.', 'ok');
     
     // إعادة تعيين النموذج
     document.querySelectorAll('input,textarea,select').forEach(el => {
@@ -736,7 +585,7 @@ async function submitRequest() {
     document.getElementById('burialPricePreview').classList.remove('active');
     
   } catch (err) {
-    setMsg('❌ حدث خطأ أثناء إرسال الطلب: ' + err.message, 'error');
+    setMsg(' حدث خطأ أثناء إرسال الطلب: ' + err.message, 'error');
     console.error(err);
   }
 }
@@ -751,18 +600,14 @@ async function loadFormData() {
     // تحميل سيارات الإسعاف للخدمة الطبية
     const itemSelect = document.getElementById('itemId');
     itemSelect.innerHTML = '<option value="">اختر سيارة الإسعاف / نوع الخدمة</option>' +
-      (data.equipment || []).filter(item => item.type !== 'سيارة نقل الجثث').map(item =>
-        `<option value="${String(item.id).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}">
-          ${String(item.inventoryNo || '').replace(/&/g, '&amp;')} - ${String(item.name || '').replace(/&/g, '&amp;')} (${item.condition})
+      (data.equipment || []).filter(item => item.type !== 'سيارة نقل الجثث').map(item =>`<option value="${String(item.id).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}">${String(item.inventoryNo || '').replace(/&/g, '&amp;')} - ${String(item.name || '').replace(/&/g, '&amp;')} (${item.condition})
          </option>`
       ).join('');
     
     // تحميل سيارات نقل الجثث
     const burialSelect = document.getElementById('burialItemId');
     burialSelect.innerHTML = '<option value="">اختر سيارة نقل الجثث</option>' +
-      (data.equipment || []).filter(item => item.type === 'سيارة نقل الجثث' || item.equippedForBurial === 'نعم').map(item =>
-        `<option value="${String(item.id).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}">
-          ${String(item.inventoryNo || '').replace(/&/g, '&amp;')} - ${String(item.name || '').replace(/&/g, '&amp;')} (${item.condition})
+      (data.equipment || []).filter(item => item.type === 'سيارة نقل الجثث' || item.equippedForBurial === 'نعم').map(item =>`<option value="${String(item.id).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}">${String(item.inventoryNo || '').replace(/&/g, '&amp;')} - ${String(item.name || '').replace(/&/g, '&amp;')} (${item.condition})
          </option>`
       ).join('');
     
