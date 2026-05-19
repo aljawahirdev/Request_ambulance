@@ -1,9 +1,8 @@
 
 
 <!DOCTYPE html>
-
-<html dir="rtl" lang="ar">
-<head><base target="_top"/><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;family=Lora:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><style>:root{
+<html lang="ar" dir="rtl">
+<head><base target="_top"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{
       --primary:#2986B0;
       --primary-light:#7ED6D1;
       --accent:#F59E0B;
@@ -182,16 +181,15 @@
 </style>
 </head>
 <body>
-<div class="wrap"><div class="card"><div class="head"><img class="logo" id="logo" src="https://drive.google.com/thumbnail?id=1mN39uinRmOQGj04B5OfC9ZTPtlXyF1mb&amp;sz=256"/><div><h1>طلب خدمة إسعاف أو نقل طبي</h1><div class="status">جمعية الجواهر بقمار - نظام الحجوزات الإلكتروني | رقم الاعتماد: 0005588999999 | الهاتف: 032233174</div><div class="hint">يرجى إدخال بيانات المريض/المتوفى والمرافقين ونوع الخدمة بدقة</div></div></div><div class="info-box"><strong> معلومات هامة:</strong><br/>• سيتم التواصل معك لتأكيد الحجز خلال 30 دقيقة.<br/>• الأسعار تعتمد على نوع الخدمة والمسافة.<br/>• يمكنك إرفاق صور الهوية والوصفات الطبية.
+<div class="wrap"><div class="card"><div class="head"><img id="logo" class="logo" src="https://drive.google.com/thumbnail?id=1mN39uinRmOQGj04B5OfC9ZTPtlXyF1mb&sz=256"><div><h1>طلب خدمة إسعاف أو نقل طبي</h1><div class="status">جمعية الجواهر بقمار - نظام الحجوزات الإلكتروني | رقم الاعتماد: 0005588999999 | الهاتف: 032233174</div><div class="hint">يرجى إدخال بيانات المريض/المتوفى والمرافقين ونوع الخدمة بدقة</div></div></div><div class="info-box"><strong> معلومات هامة:</strong><br>• سيتم التواصل معك لتأكيد الحجز خلال 30 دقيقة.<br>• الأسعار تعتمد على نوع الخدمة والمسافة.<br>• يمكنك إرفاق صور الهوية والوصفات الطبية.
     </div><!-- اختيار نوع الخدمة --><div class="service-toggle"><div class="service-btn active" id="medicalServiceBtn" onclick="selectService('medical')"><div class="medical-icon"></div>نقل طبي / إسعاف
       </div><div class="service-btn" id="burialServiceBtn" onclick="selectService('burial')"><div class="burial-icon">️</div>نقل جثة
-      </div></div><!-- نموذج الخدمة الطبية --><div class="service-section active" id="medicalSection"><div class="grid"><select id="itemId" required=""><option value="">اختر سيارة الإسعاف / نوع الخدمة</option></select><select id="tripType" onchange="toggleStateField(); calculateEstimate()" required=""><option value="">نوع النقل</option><option value="داخل الولاية"> داخل الولاية</option><option value="خارج الولاية"> خارج الولاية</option></select><div id="stateDiv" style="display:none"><input id="destinationState" onchange="calculateEstimate()" placeholder="الولاية المتجه إليها"/></div><div id="distanceDiv" style="display:none"><input id="distanceKm" onchange="calculateEstimate()" placeholder="المسافة التقريبية (كم)" type="number"/></div><input id="borrower" placeholder="اسم طالب الحجز" required=""/><input id="contact" placeholder="رقم الهاتف (للتواصل)" required="" type="tel"/><input id="patientName" placeholder="اسم المريض" required=""/><input id="relationship" placeholder="صلة القرابة (أب - أم - زوج - ...)" required=""/><select id="patientCondition"><option value="مستقر"> حالة مستقرة</option><option value="طارئ"> حالة طارئة</option><option value="عناية مركزة"> يحتاج عناية مركزة</option><option value="طريح الفراش">️ طريح الفراش</option></select><input id="address" placeholder="عنوان الانطلاق / مكان المريض" required=""/><input id="city" placeholder="البلدية / المدينة" required=""/><input id="destination" placeholder="الوجهة / المستشفى / العيادة" required=""/><input id="loanDate" required="" type="date"/><input id="appointmentTime" required="" type="time"/><input id="expectedReturnDate" placeholder="تاريخ الرجوع المتوقع" type="date"/><select id="identityType" onchange="toggleBackHint()" required=""><option value="">نوع الهوية</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>بطاقة طالب</option><option>أخرى</option></select><input id="identityNo" placeholder="رقم الهوية" required=""/><input id="identityIssuer" placeholder="الهوية الصادرة عن الجهة" required=""/><input id="identityIssueDate" required="" type="date"/><div class="full"><div class="label">صورة هوية المريض (أمامية)</div><input accept="image/*" id="patientIdFrontImage" required="" type="file"/></div><div class="full"><div class="label">صورة هوية المريض (خلفية)</div><input accept="image/*" id="patientIdBackImage" required="" type="file"/></div><input id="companionName" placeholder="اسم المرافق (إن وجد)"/><input id="companionPhone" placeholder="هاتف المرافق" type="tel"/><input id="companionRelation" placeholder="صلة المرافق بالمريض"/><div class="full"><div class="label">صورة هوية المرافق (أمامية)</div><input accept="image/*" id="companionIdFrontImage" type="file"/><div class="hint">إجباري عند إدخال اسم المرافق.</div></div><div class="full"><div class="label">صورة هوية المرافق (خلفية)</div><input accept="image/*" id="companionIdBackImage" type="file"/><div class="hint">إجباري عند إدخال اسم المرافق.</div></div><select id="extraServices" onchange="calculateEstimate()"><option value="0">خدمات إضافية (اختياري)</option><option value="500">+ أكسجين (500 دج)</option><option value="400">+ كرسي متحرك (400 دج)</option><option value="600">+ ممرض مرافق (600 دج)</option><option value="300">+ أسرة نقل (300 دج)</option><option value="800">+ سيارة إسعاف مجهزة عناية (800 دج)</option>
-</select></div></div><!-- نموذج نقل الجثة --><div class="service-section" id="burialSection"><div class="grid"><select id="burialItemId" required=""><option value="">اختر سيارة نقل الجثث</option></select><select id="burialTripType" onchange="toggleBurialStateField(); calculateBurialEstimate()" required=""><option value="">نوع النقل</option><option value="داخل الولاية">️ داخل الولاية</option><option value="خارج الولاية">️ خارج الولاية</option></select><div id="burialStateDiv" style="display:none"><input id="burialDestinationState" onchange="calculateBurialEstimate()" placeholder="الولاية المتجه إليها"/></div><div id="burialDistanceDiv" style="display:none"><input id="burialDistanceKm" onchange="calculateBurialEstimate()" placeholder="المسافة التقريبية (كم)" type="number"/></div><input id="burialBorrower" placeholder="اسم مقدم الطلب" required=""/><input id="burialContact" placeholder="رقم الهاتف (للتواصل)" required="" type="tel"/><input id="burialAddress" placeholder="عنوان الانطلاق" required=""/><input id="deceasedName" placeholder="اسم المتوفى" required=""/><input id="causeOfDeath" placeholder="سبب الوفاة" required=""/><input id="placeOfDeath" placeholder="مكان الوفاة" required=""/><input id="burialPlace" placeholder="مكان الدفن" required=""/><input id="applicantName" placeholder="اسم مقدم الطلب" required=""/><input id="applicantRelation" placeholder="صلة مقدم الطلب بالمتوفى" required=""/><input id="dateOfDeath" placeholder="تاريخ الوفاة" type="date"/><input id="burialDate" placeholder="تاريخ الدفن" type="date"/><input id="burialAppointmentTime" placeholder="وقت النقل" type="time"/><select id="burialIdentityType" onchange="toggleBurialBackHint()" required=""><option value="">نوع هوية مقدم الطلب</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="burialIdentityNo" placeholder="رقم الهوية" required=""/><input id="burialIdentityIssuer" placeholder="الهوية الصادرة عن الجهة" required=""/><input id="burialIdentityIssueDate" required="" type="date"/><input id="burialCity" placeholder="البلدية / المدينة" required=""/><input id="burialLoanDate" required="" type="date"/><input id="burialExpectedReturnDate" placeholder="تاريخ الانتهاء المتوقع" type="date"/><div class="full"><div class="label">صورة هوية مقدم الطلب (أمامية)</div><input accept="image/*" id="burialIdFrontImage" required="" type="file"/></div><div class="full"><div class="label" id="burialBackLabel">صورة هوية مقدم الطلب (خلفية)</div><input accept="image/*" id="burialIdBackImage" type="file"/></div></div></div><!-- عرض السعر التقديري (لنقل الجثة) --><div class="price-preview" id="burialPricePreview"><strong>السعر التقديري لنقل الجثة:</strong> <span id="burialEstimatedPrice">0</span> دج
-    </div><!-- عرض السعر التقديري (للخدمة الطبية) --><div class="price-preview" id="medicalPricePreview"><strong>السعر التقديري:</strong> <span id="medicalEstimatedPrice">0</span> دج
-    </div><!-- ملاحظات إضافية مشتركة --><div id="commonNotes"><textarea class="full" id="notes" placeholder="ملاحظات إضافية: حالة المريض، طابق السكن، مصعد، أي تفاصيل مهمة..."></textarea></div><button class="submit" onclick="submitRequest()"> إرسال الطلب</button><div id="msg"></div></div>
+      </div></div><!-- نموذج الخدمة الطبية --><div id="medicalSection" class="service-section active"><div class="grid"><select id="itemId" required><option value="">اختر سيارة الإسعاف / نوع الخدمة</option></select><select id="tripType" required onchange="toggleStateField(); calculateEstimate()"><option value="">نوع النقل</option><option value="داخل الولاية"> داخل الولاية</option><option value="خارج الولاية"> خارج الولاية</option></select><div id="stateDiv" style="display:none"><input id="destinationState" placeholder="الولاية المتجه إليها" onchange="calculateEstimate()"></div><div id="distanceDiv" style="display:none"><input id="distanceKm" type="number" placeholder="المسافة التقريبية (كم)" onchange="calculateEstimate()"></div><input id="borrower" placeholder="اسم طالب الحجز" required><input id="contact" type="tel" placeholder="رقم الهاتف (للتواصل)" required><input id="address" placeholder="عنوان الانطلاق / مكان المريض" required><input id="patientName" placeholder="الاسم الكامل للمريض" required><input id="relationship" placeholder="صلة القرابة (أب - أم - زوج - ...)" required><select id="patientCondition"><option value="مستقر"> حالة مستقرة</option><option value="طارئ"> حالة طارئة</option><option value="عناية مركزة"> يحتاج عناية مركزة</option><option value="طريح الفراش">️ طريح الفراش</option></select><select id="identityType" required onchange="toggleBackHint()"><option value="">نوع هوية المريض</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>بطاقة طالب</option><option>أخرى</option></select><input id="identityNo" placeholder="رقم هوية المريض" required><input id="identityIssuer" placeholder="جهة إصدار هوية المريض" required><input id="identityIssueDate" type="date" required><div class="full"><div class="label">صورة هوية المريض (أمامية)</div><input id="patientIdFrontImage" type="file" accept="image/*" required></div><div class="full"><div class="label">صورة هوية المريض (خلفية)</div><input id="patientIdBackImage" type="file" accept="image/*" required></div><input id="companionName" placeholder="الاسم الكامل للمرافق (إن وجد)"><input id="companionPhone" type="tel" placeholder="هاتف المرافق"><input id="companionRelation" placeholder="صلة المرافق بالمريض"><select id="companionIdentityType"><option value="">نوع هوية المرافق</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="companionIdentityNo" placeholder="رقم هوية المرافق"><input id="companionIdentityIssuer" placeholder="جهة إصدار هوية المرافق"><input id="companionIdentityIssueDate" type="date"><div class="full"><div class="label">صورة هوية المرافق (أمامية)</div><input id="companionIdFrontImage" type="file" accept="image/*"><div class="hint">إجباري عند إدخال بيانات المرافق.</div></div><div class="full"><div class="label">صورة هوية المرافق (خلفية)</div><input id="companionIdBackImage" type="file" accept="image/*"><div class="hint">إجباري عند إدخال بيانات المرافق.</div></div><input id="city" placeholder="البلدية / المدينة" required><input id="loanDate" type="date" required><input id="appointmentTime" type="time" required><input id="destination" placeholder="الوجهة / المستشفى / العيادة" required><input id="expectedReturnDate" type="date" placeholder="تاريخ الرجوع المتوقع"><select id="extraServices" onchange="calculateEstimate()"><option value="0">خدمات إضافية (اختياري)</option><option value="500">+ أكسجين (500 دج)</option><option value="400">+ كرسي متحرك (400 دج)</option><option value="600">+ ممرض مرافق (600 دج)</option><option value="300">+ أسرة نقل (300 دج)</option><option value="800">+ سيارة إسعاف مجهزة عناية (800 دج)</option></select></div></div><!-- نموذج نقل الجثة --><div id="burialSection" class="service-section"><div class="grid"><select id="burialItemId" required><option value="">اختر سيارة نقل الجثث</option></select><select id="burialTripType" required onchange="toggleBurialStateField(); calculateBurialEstimate()"><option value="">نوع النقل</option><option value="داخل الولاية">️ داخل الولاية</option><option value="خارج الولاية">️ خارج الولاية</option></select><div id="burialStateDiv" style="display:none"><input id="burialDestinationState" placeholder="الولاية المتجه إليها" onchange="calculateBurialEstimate()"></div><div id="burialDistanceDiv" style="display:none"><input id="burialDistanceKm" type="number" placeholder="المسافة التقريبية (كم)" onchange="calculateBurialEstimate()"></div><input id="burialBorrower" placeholder="اسم مقدم الطلب" required><input id="burialContact" type="tel" placeholder="رقم الهاتف (للتواصل)" required><input id="burialAddress" placeholder="عنوان الانطلاق" required><input id="deceasedName" placeholder="الاسم الكامل للمتوفى" required><input id="causeOfDeath" placeholder="سبب الوفاة" required><input id="placeOfDeath" placeholder="مكان الوفاة" required><input id="burialPlace" placeholder="مكان الدفن" required><select id="deceasedIdentityType" required><option value="">نوع هوية المتوفى</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="deceasedIdentityNo" placeholder="رقم هوية المتوفى" required><input id="deceasedIdentityIssuer" placeholder="جهة إصدار هوية المتوفى" required><input id="deceasedIdentityIssueDate" type="date" required><div class="full"><div class="label">صورة هوية المتوفى (أمامية)</div><input id="deceasedIdFrontImage" type="file" accept="image/*" required></div><div class="full"><div class="label">صورة هوية المتوفى (خلفية)</div><input id="deceasedIdBackImage" type="file" accept="image/*" required></div><input id="burialCompanionName" placeholder="الاسم الكامل للمرافق (إن وجد)"><input id="burialCompanionPhone" type="tel" placeholder="هاتف المرافق"><input id="burialCompanionRelation" placeholder="صلة المرافق بالمتوفى"><select id="burialCompanionIdentityType"><option value="">نوع هوية المرافق</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="burialCompanionIdentityNo" placeholder="رقم هوية المرافق"><input id="burialCompanionIdentityIssuer" placeholder="جهة إصدار هوية المرافق"><input id="burialCompanionIdentityIssueDate" type="date"><div class="full"><div class="label">صورة هوية المرافق (أمامية)</div><input id="burialCompanionIdFrontImage" type="file" accept="image/*"><div class="hint">إجباري عند إدخال بيانات المرافق.</div></div><div class="full"><div class="label">صورة هوية المرافق (خلفية)</div><input id="burialCompanionIdBackImage" type="file" accept="image/*"><div class="hint">إجباري عند إدخال بيانات المرافق.</div></div><input id="applicantName" placeholder="اسم مقدم الطلب" required><input id="applicantRelation" placeholder="صلة مقدم الطلب بالمتوفى" required><input id="dateOfDeath" type="date" placeholder="تاريخ الوفاة"><input id="burialDate" type="date" placeholder="تاريخ الدفن"><input id="burialAppointmentTime" type="time" placeholder="وقت النقل"><select id="burialIdentityType" required onchange="toggleBurialBackHint()"><option value="">نوع هوية مقدم الطلب</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="burialIdentityNo" placeholder="رقم هوية مقدم الطلب" required><input id="burialIdentityIssuer" placeholder="جهة إصدار هوية مقدم الطلب" required><input id="burialIdentityIssueDate" type="date" required><input id="burialCity" placeholder="البلدية / المدينة" required><input id="burialLoanDate" type="date" required><input id="burialExpectedReturnDate" type="date" placeholder="تاريخ الانتهاء المتوقع"><div class="full"><div class="label">صورة هوية مقدم الطلب (أمامية)</div><input id="burialIdFrontImage" type="file" accept="image/*" required></div><div class="full"><div class="label" id="burialBackLabel">صورة هوية مقدم الطلب (خلفية)</div><input id="burialIdBackImage" type="file" accept="image/*"></div></div></div><!-- عرض السعر التقديري (لنقل الجثة) --><div id="burialPricePreview" class="price-preview"><strong>السعر التقديري لنقل الجثة:</strong> <span id="burialEstimatedPrice">0</span> دج
+    </div><!-- عرض السعر التقديري (للخدمة الطبية) --><div id="medicalPricePreview" class="price-preview"><strong>السعر التقديري:</strong> <span id="medicalEstimatedPrice">0</span> دج
+    </div><!-- ملاحظات إضافية مشتركة --><div id="commonNotes"><textarea id="notes" class="full" placeholder="ملاحظات إضافية: حالة المريض، طابق السكن، مصعد، أي تفاصيل مهمة..."></textarea></div><button class="submit" onclick="submitRequest()"> إرسال الطلب</button><div id="msg"></div></div>
 </div><script>
 // رابط Google Apps Script
-const GS_URL = "https://script.google.com/macros/s/AKfycbyt_EXTw1ENBWH5kgAYhxJg84AkXC6YwtUB4Wpzsr5Siwq2xF1Tmr4uQxuIb0OvCjql/exec";
+const GS_URL = "https://script.google.com/macros/s/AKfycbzuwyyBYMQESoKwB_5Vy1Y0Tm5jgLWe5V5VF4A07xqVQymjjKkPN1D_QnvSs0hVZN_Z4Q/exec";
 
 let currentService = 'medical';
 
@@ -201,8 +199,21 @@ async function apiCall(action, args) {
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify({ action: action, args: args || [] })
   });
-  const result = await response.json();
-  if (!result.ok) throw new Error(result.error || 'خطأ غير معروف');
+
+  const text = await response.text();
+  console.log('SERVER RESPONSE:', text);
+
+  let result;
+  try {
+    result = JSON.parse(text);
+  } catch (e) {
+    throw new Error('رد السيرفر ليس JSON: ' + text);
+  }
+
+  if (!result.ok) {
+    throw new Error(result.error || result.description || 'خطأ غير معروف');
+  }
+
   return result.data;
 }
 
@@ -278,12 +289,8 @@ function toggleBurialStateField() {
 }
 
 function toggleBackHint() {
-  const identityType = document.getElementById('identityType').value;
-  const backInput = document.getElementById('idBackImage');
-  const backLabel = document.getElementById('backLabel');
-  const isPassport = identityType === 'جواز سفر';
-  backInput.required = !isPassport;
-  backLabel.textContent = isPassport ? 'صورة جواز السفر (صفحة البيانات)' : 'صورة الهوية من الخلف';
+  const backInput = document.getElementById('patientIdBackImage');
+  if (backInput) backInput.required = true;
 }
 
 function toggleBurialBackHint() {
@@ -398,10 +405,19 @@ function validateMedical() {
     setMsg('يرجى رفع صور هوية المريض من الأمام والخلف', 'error');
     return false;
   }
-  const hasCompanion = document.getElementById('companionName').value.trim() || document.getElementById('companionPhone').value.trim() || document.getElementById('companionRelation').value.trim();
-  if (hasCompanion && (!hasFile('companionIdFrontImage') || !hasFile('companionIdBackImage'))) {
-    setMsg('يرجى رفع صور هوية المرافق من الأمام والخلف', 'error');
-    return false;
+  const hasCompanion = ['companionName','companionPhone','companionRelation','companionIdentityType','companionIdentityNo','companionIdentityIssuer','companionIdentityIssueDate'].some(id => document.getElementById(id).value.trim());
+  if (hasCompanion) {
+    const requiredCompanion = ['companionName','companionIdentityType','companionIdentityNo','companionIdentityIssuer','companionIdentityIssueDate'];
+    for (const id of requiredCompanion) {
+      if (!document.getElementById(id).value.trim()) {
+        setMsg('يرجى إدخال بيانات هوية المرافق كاملة', 'error');
+        return false;
+      }
+    }
+    if (!hasFile('companionIdFrontImage') || !hasFile('companionIdBackImage')) {
+      setMsg('يرجى رفع صور هوية المرافق من الأمام والخلف', 'error');
+      return false;
+    }
   }
   return true;
 }
@@ -410,7 +426,8 @@ function validateBurial() {
   const required = [
     'burialItemId', 'burialTripType', 'burialBorrower', 'burialContact', 
     'burialAddress', 'deceasedName', 'causeOfDeath', 'placeOfDeath', 
-    'burialPlace', 'applicantName', 'applicantRelation', 'burialIdentityType',
+    'burialPlace', 'deceasedIdentityType', 'deceasedIdentityNo', 'deceasedIdentityIssuer', 'deceasedIdentityIssueDate',
+    'applicantName', 'applicantRelation', 'burialIdentityType',
     'burialIdentityNo', 'burialIdentityIssuer', 'burialIdentityIssueDate', 
     'burialCity', 'burialLoanDate'
   ];
@@ -431,14 +448,33 @@ function validateBurial() {
       return false;
     }
   }
-  
-  const identityType = document.getElementById('burialIdentityType').value;
-  const backImage = document.getElementById('burialIdBackImage');
-  if (identityType !== 'جواز سفر' && !hasFile('burialIdBackImage')) {
-    setMsg('يرجى رفع صورة الهوية من الخلف', 'error');
+  if (!hasFile('deceasedIdFrontImage') || !hasFile('deceasedIdBackImage')) {
+    setMsg('يرجى رفع صور هوية المتوفى من الأمام والخلف', 'error');
     return false;
   }
-  
+  if (!hasFile('burialIdFrontImage')) {
+    setMsg('يرجى رفع صورة هوية مقدم الطلب من الأمام', 'error');
+    return false;
+  }
+  const identityType = document.getElementById('burialIdentityType').value;
+  if (identityType !== 'جواز سفر' && !hasFile('burialIdBackImage')) {
+    setMsg('يرجى رفع صورة هوية مقدم الطلب من الخلف', 'error');
+    return false;
+  }
+  const hasCompanion = ['burialCompanionName','burialCompanionPhone','burialCompanionRelation','burialCompanionIdentityType','burialCompanionIdentityNo','burialCompanionIdentityIssuer','burialCompanionIdentityIssueDate'].some(id => document.getElementById(id).value.trim());
+  if (hasCompanion) {
+    const requiredCompanion = ['burialCompanionName','burialCompanionIdentityType','burialCompanionIdentityNo','burialCompanionIdentityIssuer','burialCompanionIdentityIssueDate'];
+    for (const id of requiredCompanion) {
+      if (!document.getElementById(id).value.trim()) {
+        setMsg('يرجى إدخال بيانات هوية مرافق المتوفى كاملة', 'error');
+        return false;
+      }
+    }
+    if (!hasFile('burialCompanionIdFrontImage') || !hasFile('burialCompanionIdBackImage')) {
+      setMsg('يرجى رفع صور هوية مرافق المتوفى من الأمام والخلف', 'error');
+      return false;
+    }
+  }
   return true;
 }
 
@@ -448,29 +484,17 @@ async function submitRequest() {
   } else {
     if (!validateBurial()) return;
   }
-  
   setMsg('جاري إرسال الطلب...', 'ok');
-  
   try {
     let data;
-    
     if (currentService === 'medical') {
       const tripType = document.getElementById('tripType').value;
       const extraServices = document.getElementById('extraServices').value;
-      
       let costEstimate = '';
       try {
-        const cost = await apiCall('calculateTripCost', [
-          tripType,
-          document.getElementById('destinationState').value || '',
-          document.getElementById('distanceKm').value || 0,
-          parseInt(extraServices) || 0,
-          null,
-          'medical'
-        ]);
+        const cost = await apiCall('calculateTripCost', [tripType, document.getElementById('destinationState').value || '', document.getElementById('distanceKm').value || 0, parseInt(extraServices) || 0, null, 'medical']);
         costEstimate = ` | السعر التقديري: ${cost.total.toLocaleString()} دج`;
       } catch(e) {}
-
       data = {
         serviceType: 'medical',
         itemId: document.getElementById('itemId').value,
@@ -481,12 +505,20 @@ async function submitRequest() {
         identityNo: document.getElementById('identityNo').value,
         identityIssuer: document.getElementById('identityIssuer').value,
         identityIssueDate: document.getElementById('identityIssueDate').value,
+        patientIdentityType: document.getElementById('identityType').value,
+        patientIdentityNo: document.getElementById('identityNo').value,
+        patientIdentityIssuer: document.getElementById('identityIssuer').value,
+        patientIdentityIssueDate: document.getElementById('identityIssueDate').value,
         patientName: document.getElementById('patientName').value,
         relationship: document.getElementById('relationship').value,
         patientCondition: document.getElementById('patientCondition').value,
         companionName: document.getElementById('companionName').value,
         companionPhone: document.getElementById('companionPhone').value,
         companionRelation: document.getElementById('companionRelation').value,
+        companionIdentityType: document.getElementById('companionIdentityType').value,
+        companionIdentityNo: document.getElementById('companionIdentityNo').value,
+        companionIdentityIssuer: document.getElementById('companionIdentityIssuer').value,
+        companionIdentityIssueDate: document.getElementById('companionIdentityIssueDate').value,
         city: document.getElementById('city').value,
         loanDate: document.getElementById('loanDate').value,
         expectedReturnDate: document.getElementById('expectedReturnDate').value || document.getElementById('loanDate').value,
@@ -515,20 +547,13 @@ async function submitRequest() {
       };
     } else {
       const tripType = document.getElementById('burialTripType').value;
-      
       let costEstimate = '';
       try {
-        const cost = await apiCall('calculateTripCost', [
-          tripType,
-          document.getElementById('burialDestinationState').value || '',
-          document.getElementById('burialDistanceKm').value || 0,
-          0,
-          null,
-          'burial'
-        ]);
+        const cost = await apiCall('calculateTripCost', [tripType, document.getElementById('burialDestinationState').value || '', document.getElementById('burialDistanceKm').value || 0, 0, null, 'burial']);
         costEstimate = ` | السعر التقديري: ${cost.total.toLocaleString()} دج`;
       } catch(e) {}
-
+      const deceasedFront = await compressImage('deceasedIdFrontImage');
+      const deceasedBack = await compressImage('deceasedIdBackImage');
       data = {
         serviceType: 'burial',
         itemId: document.getElementById('burialItemId').value,
@@ -539,6 +564,10 @@ async function submitRequest() {
         identityNo: document.getElementById('burialIdentityNo').value,
         identityIssuer: document.getElementById('burialIdentityIssuer').value,
         identityIssueDate: document.getElementById('burialIdentityIssueDate').value,
+        patientIdentityType: document.getElementById('deceasedIdentityType').value,
+        patientIdentityNo: document.getElementById('deceasedIdentityNo').value,
+        patientIdentityIssuer: document.getElementById('deceasedIdentityIssuer').value,
+        patientIdentityIssueDate: document.getElementById('deceasedIdentityIssueDate').value,
         city: document.getElementById('burialCity').value,
         loanDate: document.getElementById('burialLoanDate').value,
         expectedReturnDate: document.getElementById('burialExpectedReturnDate').value || document.getElementById('burialLoanDate').value,
@@ -555,35 +584,46 @@ async function submitRequest() {
         applicantRelation: document.getElementById('applicantRelation').value,
         dateOfDeath: document.getElementById('dateOfDeath').value || '',
         burialDate: document.getElementById('burialDate').value || '',
+        companionName: document.getElementById('burialCompanionName').value,
+        companionPhone: document.getElementById('burialCompanionPhone').value,
+        companionRelation: document.getElementById('burialCompanionRelation').value,
+        companionIdentityType: document.getElementById('burialCompanionIdentityType').value,
+        companionIdentityNo: document.getElementById('burialCompanionIdentityNo').value,
+        companionIdentityIssuer: document.getElementById('burialCompanionIdentityIssuer').value,
+        companionIdentityIssueDate: document.getElementById('burialCompanionIdentityIssueDate').value,
         notes: [
           'نوع الخدمة: نقل جثة',
           'وقت النقل: ' + (document.getElementById('burialAppointmentTime').value || ''),
           'نوع النقل: ' + tripType,
           'مكان الدفن: ' + document.getElementById('burialPlace').value,
+          document.getElementById('burialCompanionName').value ? 'المرافق: ' + document.getElementById('burialCompanionName').value : '',
           costEstimate,
           'ملاحظات: ' + document.getElementById('notes').value
         ].filter(Boolean).join(' | '),
         idFrontImage: await compressImage('burialIdFrontImage'),
-        idBackImage: await compressImage('burialIdBackImage')
+        idBackImage: await compressImage('burialIdBackImage'),
+        deceasedIdFrontImage: deceasedFront,
+        deceasedIdBackImage: deceasedBack,
+        patientIdFrontImage: deceasedFront,
+        patientIdBackImage: deceasedBack,
+        companionIdFrontImage: await compressImage('burialCompanionIdFrontImage'),
+        companionIdBackImage: await compressImage('burialCompanionIdBackImage')
       };
     }
-    
     const result = await apiCall('submitExternalLoanRequest', [data]);
-    setMsg(' تم إرسال الطلب بنجاح! رقم الحجز: ' + (result.requestNo || '') + '<br>سيتم التواصل معكم قريباً لتأكيد الخدمة.', 'ok');
-    
-    // إعادة تعيين النموذج
+    setMsg(' تم إرسال الطلب بنجاح! رقم الحجز: ' + (result.requestNo || ''), 'ok');
     document.querySelectorAll('input,textarea,select').forEach(el => {
       if (el.type === 'file') el.value = '';
-      else if (el.id !== 'loanDate' && el.id !== 'identityIssueDate' && el.id !== 'burialLoanDate' && el.id !== 'burialIdentityIssueDate') el.value = '';
+      else if (!['loanDate','identityIssueDate','burialLoanDate','burialIdentityIssueDate','deceasedIdentityIssueDate'].includes(el.id)) el.value = '';
     });
     document.getElementById('loanDate').value = today();
     document.getElementById('identityIssueDate').value = today();
     document.getElementById('burialLoanDate').value = today();
     document.getElementById('burialIdentityIssueDate').value = today();
+    const deceasedIssue = document.getElementById('deceasedIdentityIssueDate'); if (deceasedIssue) deceasedIssue.value = today();
     document.getElementById('extraServices').value = '0';
     document.getElementById('medicalPricePreview').classList.remove('active');
     document.getElementById('burialPricePreview').classList.remove('active');
-    
   } catch (err) {
     setMsg(' حدث خطأ أثناء إرسال الطلب: ' + err.message, 'error');
     console.error(err);
@@ -622,6 +662,7 @@ window.onload = () => {
   document.getElementById('identityIssueDate').value = today();
   document.getElementById('burialLoanDate').value = today();
   document.getElementById('burialIdentityIssueDate').value = today();
+  const deceasedIssue = document.getElementById('deceasedIdentityIssueDate'); if (deceasedIssue) deceasedIssue.value = today();
   loadFormData();
 };
 </script>
