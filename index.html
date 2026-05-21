@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head><base target="_top"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://script.google.com"><link rel="preconnect" href="https://script.googleusercontent.com"><link rel="dns-prefetch" href="https://script.google.com"><link rel="dns-prefetch" href="https://script.googleusercontent.com"><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lora:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript><style>:root{
@@ -624,7 +626,7 @@ function buildReceiptHtml(r) {
   .signatures{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;font-size:8.4px;font-weight:800;min-height:36px;line-height:1.35}
   .signatures span{display:block;margin-top:5px;font-weight:600;color:#64748b}
   @media print{body{background:white}.page{margin:0;box-shadow:none;width:210mm;min-height:297mm}.no-print{display:none}@page{size:A4;margin:0}}
-  @media(max-width:800px){.page{width:100%;min-height:auto;padding:12px}.header{grid-template-columns:1fr}.head-side,.head-side.left{text-align:center}.meta,.receipt-grid{grid-template-columns:1fr}.box.status-box,.wide{grid-column:auto}.footer{grid-template-columns:1fr;margin-top:14px}.qr-wrap{border-left:0;border-bottom:1px dashed #94a3b8;padding:0 0 8px}.signatures{grid-template-columns:1fr}.doc-title{font-size:13px;padding:6px 16px}}
+  @media screen and (max-width:800px){.page{width:100%;min-height:auto;padding:12px}.header{grid-template-columns:1fr}.head-side,.head-side.left{text-align:center}.meta,.receipt-grid{grid-template-columns:1fr}.box.status-box,.wide{grid-column:auto}.footer{grid-template-columns:1fr;margin-top:14px}.qr-wrap{border-left:0;border-bottom:1px dashed #94a3b8;padding:0 0 8px}.signatures{grid-template-columns:1fr}.doc-title{font-size:13px;padding:6px 16px}}
 </style>
 </head>
 <body>
@@ -758,17 +760,38 @@ async function printReceipt() {
     setMsg('لا يوجد وصل جاهز للطباعة. يرجى إرسال الطلب أولا.', 'error');
     return;
   }
-  const win = window.open('', '_blank');
+
+  const blob = new Blob([lastReceiptHtml], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const win = window.open(url, '_blank');
+
   if (!win) {
+    URL.revokeObjectURL(url);
     setMsg('تعذر فتح نافذة الطباعة. يرجى السماح بالنوافذ المنبثقة ثم إعادة المحاولة.', 'error');
     return;
   }
-  win.document.open();
-  win.document.write(lastReceiptHtml);
-  win.document.close();
-  await waitForReceiptImages(win);
-  win.focus();
-  win.print();
+
+  let didPrint = false;
+  const openPrintDialog = async () => {
+    if (didPrint) return;
+    didPrint = true;
+    try {
+      await waitForReceiptImages(win);
+      win.focus();
+      win.print();
+    } finally {
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
+    }
+  };
+
+  win.addEventListener('load', openPrintDialog, { once: true });
+  setTimeout(() => {
+    try {
+      if (win.document && win.document.readyState === 'complete') openPrintDialog();
+    } catch (err) {
+      openPrintDialog();
+    }
+  }, 500);
 }
 
 function safeFileName(value) {
