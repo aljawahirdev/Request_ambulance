@@ -1,9 +1,6 @@
-
-
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><base target="_top"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{
+<head><base target="_top"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://script.google.com"><link rel="preconnect" href="https://script.googleusercontent.com"><link rel="dns-prefetch" href="https://script.google.com"><link rel="dns-prefetch" href="https://script.googleusercontent.com"><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lora:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript><style>:root{
       --primary:#2986B0;
       --primary-light:#7ED6D1;
       --accent:#F59E0B;
@@ -44,6 +41,15 @@
       gap:14px;
       align-items:center;
       margin-bottom:18px
+    }
+    .logo-link{
+      display:inline-flex;
+      width:78px;
+      height:78px;
+      border-radius:50%;
+      text-decoration:none;
+      flex:0 0 auto;
+      cursor:pointer
     }
     .logo{
       width:78px;
@@ -168,21 +174,43 @@
       display:block;
       margin-bottom:5px
     }
+    .receipt-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px
+    }
+    .receipt-action-btn{
+      flex:1;
+      min-width:180px;
+      border:0;
+      border-radius:12px;
+      padding:12px 14px;
+      font-weight:800;
+      cursor:pointer;
+      color:#fff;
+      background:linear-gradient(135deg,#2986B0,#7ED6D1)
+    }
+    .receipt-action-btn.secondary{
+      background:linear-gradient(135deg,#A86417,#F59E0B)
+    }
     @media (max-width: 640px){
       .wrap{margin:0;padding:8px}
       .card{border-radius:16px;padding:14px}
       .head{align-items:flex-start;gap:10px}
-      .logo{width:56px;height:56px}
+      .logo-link,.logo{width:56px;height:56px}
       .head h1{font-size:18px;line-height:1.4}
       .grid{grid-template-columns:1fr;gap:10px}
       input,select,textarea{font-size:14px;padding:12px;border-radius:12px}
       .service-toggle{flex-direction:column}
       .submit{font-size:15px;padding:13px}
+      .receipt-actions{flex-direction:column}
+      .receipt-action-btn{min-width:100%}
     }
 </style>
 </head>
 <body>
-<div class="wrap"><div class="card"><div class="head"><img id="logo" class="logo" src="https://drive.google.com/thumbnail?id=1mN39uinRmOQGj04B5OfC9ZTPtlXyF1mb&sz=256"><div><h1>طلب خدمة إسعاف أو نقل طبي</h1><div class="status">جمعية الجواهر بقمار - نظام الحجوزات الإلكتروني | رقم الاعتماد: 0005588999999 | الهاتف: 032233174</div><div class="hint">يرجى إدخال بيانات المريض/المتوفى والمرافقين ونوع الخدمة بدقة</div></div></div><div class="info-box"><strong> معلومات هامة:</strong><br>• سيتم التواصل معك لتأكيد الحجز خلال 30 دقيقة.<br>• الأسعار تعتمد على نوع الخدمة والمسافة.<br>• يمكنك إرفاق صور الهوية والوصفات الطبية.
+<div class="wrap"><div class="card"><div class="head"><a class="logo-link" href="https://aljawahirdev.github.io/home/" target="_top" aria-label="العودة إلى الصفحة الرئيسية"><img id="logo" class="logo" src="https://drive.google.com/thumbnail?id=1mN39uinRmOQGj04B5OfC9ZTPtlXyF1mb&sz=256" alt="شعار جمعية الجواهر" loading="eager" decoding="async" referrerpolicy="no-referrer"></a><div><h1>طلب خدمة إسعاف أو نقل طبي</h1><div class="status">جمعية الجواهر بقمار - نظام الحجوزات الإلكتروني | رقم الاعتماد: 2018/10 | الهاتف: 032233730</div><div class="hint">يرجى إدخال بيانات المريض/المتوفى والمرافقين ونوع الخدمة بدقة</div></div></div><div class="info-box"><strong> معلومات هامة:</strong><br>• سيتم التواصل معك لتأكيد الحجز خلال 30 دقيقة.<br>• الأسعار تعتمد على نوع الخدمة والمسافة.<br>• يمكنك إرفاق صور الهوية والوصفات الطبية.
     </div><!-- اختيار نوع الخدمة --><div class="service-toggle"><div class="service-btn active" id="medicalServiceBtn" onclick="selectService('medical')"><div class="medical-icon"></div>نقل طبي / إسعاف
       </div><div class="service-btn" id="burialServiceBtn" onclick="selectService('burial')"><div class="burial-icon">️</div>نقل جثة
       </div></div><!-- نموذج الخدمة الطبية --><div id="medicalSection" class="service-section active"><div class="grid"><select id="itemId" required><option value="">اختر سيارة الإسعاف / نوع الخدمة</option></select><select id="tripType" required onchange="toggleStateField(); calculateEstimate()"><option value="">نوع النقل</option><option value="داخل الولاية"> داخل الولاية</option><option value="خارج الولاية"> خارج الولاية</option></select><div id="stateDiv" style="display:none"><input id="destinationState" placeholder="الولاية المتجه إليها" onchange="calculateEstimate()"></div><div id="distanceDiv" style="display:none"><input id="distanceKm" type="number" placeholder="المسافة التقريبية (كم)" onchange="calculateEstimate()"></div><input id="borrower" placeholder="اسم طالب الحجز" required><input id="contact" type="tel" placeholder="رقم الهاتف (للتواصل)" required><input id="address" placeholder="عنوان الانطلاق / مكان المريض" required><input id="patientName" placeholder="الاسم الكامل للمريض" required><input id="relationship" placeholder="صلة القرابة (أب - أم - زوج - ...)" required><select id="patientCondition"><option value="مستقر"> حالة مستقرة</option><option value="طارئ"> حالة طارئة</option><option value="عناية مركزة"> يحتاج عناية مركزة</option><option value="طريح الفراش">️ طريح الفراش</option></select><select id="identityType" required onchange="toggleBackHint()"><option value="">نوع هوية المريض</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>بطاقة طالب</option><option>أخرى</option></select><input id="identityNo" placeholder="رقم هوية المريض" required><input id="identityIssuer" placeholder="جهة إصدار هوية المريض" required><input id="identityIssueDate" type="date" required><div class="full"><div class="label">صورة هوية المريض (أمامية)</div><input id="patientIdFrontImage" type="file" accept="image/*" required></div><div class="full"><div class="label">صورة هوية المريض (خلفية)</div><input id="patientIdBackImage" type="file" accept="image/*" required></div><input id="companionName" placeholder="الاسم الكامل للمرافق (إن وجد)"><input id="companionPhone" type="tel" placeholder="هاتف المرافق"><input id="companionRelation" placeholder="صلة المرافق بالمريض"><select id="companionIdentityType"><option value="">نوع هوية المرافق</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="companionIdentityNo" placeholder="رقم هوية المرافق"><input id="companionIdentityIssuer" placeholder="جهة إصدار هوية المرافق"><input id="companionIdentityIssueDate" type="date"><div class="full"><div class="label">صورة هوية المرافق (أمامية)</div><input id="companionIdFrontImage" type="file" accept="image/*"><div class="hint">إجباري عند إدخال بيانات المرافق.</div></div><div class="full"><div class="label">صورة هوية المرافق (خلفية)</div><input id="companionIdBackImage" type="file" accept="image/*"><div class="hint">إجباري عند إدخال بيانات المرافق.</div></div><input id="city" placeholder="البلدية / المدينة" required><input id="loanDate" type="date" required><input id="appointmentTime" type="time" required><input id="destination" placeholder="الوجهة / المستشفى / العيادة" required><input id="expectedReturnDate" type="date" placeholder="تاريخ الرجوع المتوقع"><select id="extraServices" onchange="calculateEstimate()"><option value="0">خدمات إضافية (اختياري)</option><option value="500">+ أكسجين (500 دج)</option><option value="400">+ كرسي متحرك (400 دج)</option><option value="600">+ ممرض مرافق (600 دج)</option><option value="300">+ أسرة نقل (300 دج)</option><option value="800">+ سيارة إسعاف مجهزة عناية (800 دج)</option></select></div></div><!-- نموذج نقل الجثة --><div id="burialSection" class="service-section"><div class="grid"><select id="burialItemId" required><option value="">اختر سيارة نقل الجثث</option></select><select id="burialTripType" required onchange="toggleBurialStateField(); calculateBurialEstimate()"><option value="">نوع النقل</option><option value="داخل الولاية">️ داخل الولاية</option><option value="خارج الولاية">️ خارج الولاية</option></select><div id="burialStateDiv" style="display:none"><input id="burialDestinationState" placeholder="الولاية المتجه إليها" onchange="calculateBurialEstimate()"></div><div id="burialDistanceDiv" style="display:none"><input id="burialDistanceKm" type="number" placeholder="المسافة التقريبية (كم)" onchange="calculateBurialEstimate()"></div><input id="burialBorrower" placeholder="اسم مقدم الطلب" required><input id="burialContact" type="tel" placeholder="رقم الهاتف (للتواصل)" required><input id="burialAddress" placeholder="عنوان الانطلاق" required><input id="deceasedName" placeholder="الاسم الكامل للمتوفى" required><input id="causeOfDeath" placeholder="سبب الوفاة" required><input id="placeOfDeath" placeholder="مكان الوفاة" required><input id="burialPlace" placeholder="مكان الدفن" required><select id="deceasedIdentityType" required><option value="">نوع هوية المتوفى</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="deceasedIdentityNo" placeholder="رقم هوية المتوفى" required><input id="deceasedIdentityIssuer" placeholder="جهة إصدار هوية المتوفى" required><input id="deceasedIdentityIssueDate" type="date" required><div class="full"><div class="label">صورة هوية المتوفى (أمامية)</div><input id="deceasedIdFrontImage" type="file" accept="image/*" required></div><div class="full"><div class="label">صورة هوية المتوفى (خلفية)</div><input id="deceasedIdBackImage" type="file" accept="image/*" required></div><input id="burialCompanionName" placeholder="الاسم الكامل للمرافق (إن وجد)"><input id="burialCompanionPhone" type="tel" placeholder="هاتف المرافق"><input id="burialCompanionRelation" placeholder="صلة المرافق بالمتوفى"><select id="burialCompanionIdentityType"><option value="">نوع هوية المرافق</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="burialCompanionIdentityNo" placeholder="رقم هوية المرافق"><input id="burialCompanionIdentityIssuer" placeholder="جهة إصدار هوية المرافق"><input id="burialCompanionIdentityIssueDate" type="date"><div class="full"><div class="label">صورة هوية المرافق (أمامية)</div><input id="burialCompanionIdFrontImage" type="file" accept="image/*"><div class="hint">إجباري عند إدخال بيانات المرافق.</div></div><div class="full"><div class="label">صورة هوية المرافق (خلفية)</div><input id="burialCompanionIdBackImage" type="file" accept="image/*"><div class="hint">إجباري عند إدخال بيانات المرافق.</div></div><input id="applicantName" placeholder="اسم مقدم الطلب" required><input id="applicantRelation" placeholder="صلة مقدم الطلب بالمتوفى" required><input id="dateOfDeath" type="date" placeholder="تاريخ الوفاة"><input id="burialDate" type="date" placeholder="تاريخ الدفن"><input id="burialAppointmentTime" type="time" placeholder="وقت النقل"><select id="burialIdentityType" required onchange="toggleBurialBackHint()"><option value="">نوع هوية مقدم الطلب</option><option>بطاقة التعريف الوطنية</option><option>رخصة سياقة</option><option>جواز سفر</option><option>أخرى</option></select><input id="burialIdentityNo" placeholder="رقم هوية مقدم الطلب" required><input id="burialIdentityIssuer" placeholder="جهة إصدار هوية مقدم الطلب" required><input id="burialIdentityIssueDate" type="date" required><input id="burialCity" placeholder="البلدية / المدينة" required><input id="burialLoanDate" type="date" required><input id="burialExpectedReturnDate" type="date" placeholder="تاريخ الانتهاء المتوقع"><div class="full"><div class="label">صورة هوية مقدم الطلب (أمامية)</div><input id="burialIdFrontImage" type="file" accept="image/*" required></div><div class="full"><div class="label" id="burialBackLabel">صورة هوية مقدم الطلب (خلفية)</div><input id="burialIdBackImage" type="file" accept="image/*"></div></div></div><!-- عرض السعر التقديري (لنقل الجثة) --><div id="burialPricePreview" class="price-preview"><strong>السعر التقديري لنقل الجثة:</strong> <span id="burialEstimatedPrice">0</span> دج
@@ -190,9 +218,78 @@
     </div><!-- ملاحظات إضافية مشتركة --><div id="commonNotes"><textarea id="notes" class="full" placeholder="ملاحظات إضافية: حالة المريض، طابق السكن، مصعد، أي تفاصيل مهمة..."></textarea></div><button id="submitBtn" class="submit" onclick="submitRequest()"> إرسال الطلب</button><div id="msg"></div></div>
 </div><script>
 // رابط Google Apps Script
-const GS_URL = "https://script.google.com/macros/s/AKfycbzuwyyBYMQESoKwB_5Vy1Y0Tm5jgLWe5V5VF4A07xqVQymjjKkPN1D_QnvSs0hVZN_Z4Q/exec";
+const GS_URL = "https://script.google.com/macros/s/AKfycbx9FRe5teF2ZT_0ckYdxwIdZJKvwfGlYPAsBl20piDCPeFdVSgghWBD2sXmqnKrOTCgPw/exec";
+
+const CUSTOM_LOGO_URL = "https://drive.google.com/thumbnail?id=1mN39uinRmOQGj04B5OfC9ZTPtlXyF1mb&sz=256";
+const HOME_URL = "https://aljawahirdev.github.io/home/";
+const EMBEDDED_LOGO_DATA_URI = CUSTOM_LOGO_URL;
+let logoDataUrlPromise = null;
+
+function initLogoFallback() {
+  const logo = document.getElementById('logo');
+  if (!logo) return;
+  logo.dataset.dataUrl = EMBEDDED_LOGO_DATA_URI;
+  if (!logo.getAttribute('src')) logo.src = EMBEDDED_LOGO_DATA_URI;
+  logo.onerror = () => {
+    logo.onerror = null;
+    logo.src = EMBEDDED_LOGO_DATA_URI;
+    logo.dataset.dataUrl = EMBEDDED_LOGO_DATA_URI;
+  };
+}
+
+async function imageUrlToDataUrl(url) {
+  if (!url || String(url).startsWith('data:')) return url || EMBEDDED_LOGO_DATA_URI;
+  try {
+    const response = await fetch(url, { cache: 'force-cache' });
+    if (!response.ok) throw new Error('تعذر تحميل الشعار');
+    const blob = await response.blob();
+    return await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  } catch (err) {
+    console.warn('سيتم استعمال الشعار المضمن بسبب تعذر تضمين الشعار الخارجي:', err);
+    return EMBEDDED_LOGO_DATA_URI;
+  }
+}
+
+function cacheLogoDataUrl(url) {
+  const logo = document.getElementById('logo');
+  const source = url || (logo && logo.getAttribute('src')) || CUSTOM_LOGO_URL;
+  logoDataUrlPromise = imageUrlToDataUrl(source).then(dataUrl => {
+    const safeDataUrl = dataUrl || CUSTOM_LOGO_URL;
+    if (logo) logo.dataset.dataUrl = safeDataUrl;
+    return safeDataUrl;
+  });
+  return logoDataUrlPromise;
+}
+
+function warmLogoCache() {
+  if (logoDataUrlPromise) return logoDataUrlPromise;
+  const start = () => cacheLogoDataUrl(CUSTOM_LOGO_URL);
+  if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 2000 });
+  else setTimeout(start, 300);
+  return logoDataUrlPromise;
+}
+
+async function ensureLogoDataUrl() {
+  const logo = document.getElementById('logo');
+  if (logoDataUrlPromise) return await logoDataUrlPromise;
+  if (logo && logo.dataset.dataUrl && String(logo.dataset.dataUrl).startsWith('data:')) return logo.dataset.dataUrl;
+  return await cacheLogoDataUrl((logo && logo.getAttribute('src')) || CUSTOM_LOGO_URL);
+}
+
+function getReceiptLogoUrl() {
+  const logo = document.getElementById('logo');
+  if (!logo) return EMBEDDED_LOGO_DATA_URI;
+  return logo.dataset.dataUrl || (String(logo.src || '').startsWith('data:') ? logo.src : EMBEDDED_LOGO_DATA_URI);
+}
 
 let currentService = 'medical';
+let lastReceiptHtml = '';
+let lastReceiptNo = '';
 
 async function apiCall(action, args) {
   const response = await fetch(GS_URL, {
@@ -221,6 +318,477 @@ async function apiCall(action, args) {
 function setMsg(text, type) {
   const msgDiv = document.getElementById('msg');
   msgDiv.innerHTML = `<div class="${type}">${text}</div>`;
+}
+
+function escapeHtml(value) {
+  return String(value == null || value === '' ? '-' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function cleanOptionText(value) {
+  return String(value || '').replace(/\s+/g, ' ').trim() || '-';
+}
+
+function getSelectedOptionText(selectId) {
+  const select = document.getElementById(selectId);
+  if (!select || !select.options || select.selectedIndex < 0) return '-';
+  return cleanOptionText(select.options[select.selectedIndex].textContent || select.value || '-');
+}
+
+function formatDateOnly(value) {
+  if (!value) return '-';
+  const parts = String(value).split('-');
+  if (parts.length === 3) return `${parts[2]}-${parts[1]}-${parts[0]}`;
+  return value;
+}
+
+function currentDepositDateTime() {
+  const d = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  return `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function createReceiptData(data, result) {
+  const isBurial = data.serviceType === 'burial';
+  return {
+    requestNo: result.requestNo || result.id || '-',
+    depositDate: result.depositDate || result.createdAt || currentDepositDateTime(),
+    status: 'تم إيداع الطلب إلكترونيا',
+    serviceName: isBurial ? 'نقل جثة' : 'نقل طبي / إسعاف',
+    applicantName: isBurial ? (data.applicantName || data.borrower || '-') : (data.borrower || '-'),
+    contact: data.contact || '-',
+    address: data.address || '-',
+    city: data.city || '-',
+    identityType: isBurial ? (data.identityType || '-') : (data.identityType || '-'),
+    identityNo: isBurial ? (data.identityNo || '-') : (data.identityNo || '-'),
+    identityIssuer: data.identityIssuer || '-',
+    identityIssueDate: data.identityIssueDate || '-',
+    beneficiaryLabel: isBurial ? 'المتوفى' : 'المريض',
+    beneficiaryName: isBurial ? (data.deceasedName || '-') : (data.patientName || '-'),
+    beneficiaryIdentityType: isBurial ? (data.patientIdentityType || '-') : (data.patientIdentityType || data.identityType || '-'),
+    beneficiaryIdentityNo: isBurial ? (data.patientIdentityNo || '-') : (data.patientIdentityNo || data.identityNo || '-'),
+    beneficiaryIdentityIssuer: isBurial ? (data.patientIdentityIssuer || '-') : (data.patientIdentityIssuer || data.identityIssuer || '-'),
+    beneficiaryIdentityIssueDate: isBurial ? (data.patientIdentityIssueDate || '-') : (data.patientIdentityIssueDate || data.identityIssueDate || '-'),
+    relationship: isBurial ? (data.applicantRelation || '-') : (data.relationship || '-'),
+    tripType: data.tripType || '-',
+    destinationState: data.destinationState || '-',
+    distanceKm: data.distanceKm || '-',
+    destination: data.destination || '-',
+    loanDate: data.loanDate || '-',
+    appointmentTime: data.appointmentTime || '-',
+    expectedReturnDate: data.expectedReturnDate || '-',
+    vehicleText: data.vehicleText || '-',
+    vehicleId: data.itemId || '-',
+    companionName: data.companionName || '-',
+    companionPhone: data.companionPhone || '-',
+    companionRelation: data.companionRelation || '-',
+    companionIdentityType: data.companionIdentityType || '-',
+    companionIdentityNo: data.companionIdentityNo || '-',
+    companionIdentityIssuer: data.companionIdentityIssuer || '-',
+    companionIdentityIssueDate: data.companionIdentityIssueDate || '-',
+    hasCompanion: !!(data.companionName || data.companionPhone || data.companionRelation || data.companionIdentityType || data.companionIdentityNo || data.companionIdentityIssuer || data.companionIdentityIssueDate),
+    notes: data.notes || '-',
+    logoUrl: getReceiptLogoUrl()
+  };
+}
+
+function buildReceiptRow(label, value) {
+  return `<div class="receipt-field"><div class="receipt-label">${escapeHtml(label)}</div><div class="receipt-value">${escapeHtml(value)}</div></div>`;
+}
+
+
+function qrUtf8Bytes(text) {
+  const normalized = String(text == null ? '' : text);
+  if (window.TextEncoder) return Array.from(new TextEncoder().encode(normalized));
+  return normalized.split('').map(ch => ch.charCodeAt(0) & 255);
+}
+
+function qrMakeDataUri(text) {
+  const version = 4;
+  const size = 17 + version * 4;
+  const dataCapacity = 80;
+  const ecCodewords = 20;
+  const modules = Array.from({ length: size }, () => Array(size).fill(null));
+  const isFunction = Array.from({ length: size }, () => Array(size).fill(false));
+
+  const setFunction = (x, y, dark) => {
+    if (x < 0 || y < 0 || x >= size || y >= size) return;
+    modules[y][x] = !!dark;
+    isFunction[y][x] = true;
+  };
+  const reserve = (x, y) => {
+    if (x < 0 || y < 0 || x >= size || y >= size) return;
+    isFunction[y][x] = true;
+  };
+
+  function drawFinder(x, y) {
+    for (let dy = -1; dy <= 7; dy++) {
+      for (let dx = -1; dx <= 7; dx++) {
+        const xx = x + dx, yy = y + dy;
+        const inCore = dx >= 0 && dx <= 6 && dy >= 0 && dy <= 6;
+        const dark = inCore && (dx === 0 || dx === 6 || dy === 0 || dy === 6 || (dx >= 2 && dx <= 4 && dy >= 2 && dy <= 4));
+        setFunction(xx, yy, dark);
+      }
+    }
+  }
+
+  function drawAlignment(cx, cy) {
+    for (let dy = -2; dy <= 2; dy++) {
+      for (let dx = -2; dx <= 2; dx++) {
+        const dark = Math.max(Math.abs(dx), Math.abs(dy)) !== 1;
+        setFunction(cx + dx, cy + dy, dark);
+      }
+    }
+  }
+
+  drawFinder(0, 0);
+  drawFinder(size - 7, 0);
+  drawFinder(0, size - 7);
+  for (let i = 8; i < size - 8; i++) {
+    setFunction(i, 6, i % 2 === 0);
+    setFunction(6, i, i % 2 === 0);
+  }
+  drawAlignment(26, 26);
+  setFunction(8, size - 8, true);
+
+  for (let i = 0; i < 9; i++) {
+    if (i !== 6) {
+      reserve(8, i);
+      reserve(i, 8);
+    }
+  }
+  for (let i = 0; i < 8; i++) {
+    reserve(size - 1 - i, 8);
+    reserve(8, size - 1 - i);
+  }
+
+  const bytes = qrUtf8Bytes(text).slice(0, 78);
+  const bits = [];
+  const appendBits = (value, length) => {
+    for (let i = length - 1; i >= 0; i--) bits.push((value >>> i) & 1);
+  };
+  appendBits(0x4, 4);
+  appendBits(bytes.length, 8);
+  bytes.forEach(b => appendBits(b, 8));
+  const maxBits = dataCapacity * 8;
+  appendBits(0, Math.min(4, maxBits - bits.length));
+  while (bits.length % 8) bits.push(0);
+  const data = [];
+  for (let i = 0; i < bits.length; i += 8) data.push(bits.slice(i, i + 8).reduce((a, b) => (a << 1) | b, 0));
+  for (let pad = 0; data.length < dataCapacity; pad++) data.push(pad % 2 ? 0x11 : 0xEC);
+
+  const exp = new Array(512), log = new Array(256);
+  let x = 1;
+  for (let i = 0; i < 255; i++) {
+    exp[i] = x;
+    log[x] = i;
+    x <<= 1;
+    if (x & 0x100) x ^= 0x11D;
+  }
+  for (let i = 255; i < 512; i++) exp[i] = exp[i - 255];
+  const gfMul = (a, b) => (a && b) ? exp[log[a] + log[b]] : 0;
+
+  function rsDivisor(degree) {
+    const result = new Array(degree).fill(0);
+    result[degree - 1] = 1;
+    let root = 1;
+    for (let i = 0; i < degree; i++) {
+      for (let j = 0; j < degree; j++) {
+        result[j] = gfMul(result[j], root);
+        if (j + 1 < degree) result[j] ^= result[j + 1];
+      }
+      root = gfMul(root, 2);
+    }
+    return result;
+  }
+
+  const divisor = rsDivisor(ecCodewords);
+  const ecc = new Array(ecCodewords).fill(0);
+  data.forEach(byte => {
+    const factor = byte ^ ecc.shift();
+    ecc.push(0);
+    for (let i = 0; i < ecCodewords; i++) ecc[i] ^= gfMul(divisor[i], factor);
+  });
+  const allCodewords = data.concat(ecc);
+  const allBits = [];
+  allCodewords.forEach(b => appendCodewordBits(b, allBits));
+  function appendCodewordBits(value, target) {
+    for (let i = 7; i >= 0; i--) target.push((value >>> i) & 1);
+  }
+
+  let bitIndex = 0;
+  for (let right = size - 1; right >= 1; right -= 2) {
+    if (right === 6) right--;
+    for (let vert = 0; vert < size; vert++) {
+      const y = ((right + 1) & 2) === 0 ? size - 1 - vert : vert;
+      for (let j = 0; j < 2; j++) {
+        const xx = right - j;
+        if (!isFunction[y][xx]) {
+          modules[y][xx] = bitIndex < allBits.length ? !!allBits[bitIndex] : false;
+          bitIndex++;
+        }
+      }
+    }
+  }
+
+  const mask = (xx, yy) => ((xx + yy) % 2) === 0;
+  for (let yy = 0; yy < size; yy++) {
+    for (let xx = 0; xx < size; xx++) {
+      if (!isFunction[yy][xx] && mask(xx, yy)) modules[yy][xx] = !modules[yy][xx];
+    }
+  }
+
+  function formatBits(errorLevelBits, maskPattern) {
+    const dataBits = (errorLevelBits << 3) | maskPattern;
+    let rem = dataBits;
+    for (let i = 0; i < 10; i++) rem = (rem << 1) ^ (((rem >>> 9) & 1) ? 0x537 : 0);
+    return ((dataBits << 10) | (rem & 0x3FF)) ^ 0x5412;
+  }
+  const fmt = formatBits(1, 0);
+  const getBit = (val, i) => ((val >>> i) & 1) !== 0;
+  for (let i = 0; i <= 5; i++) setFunction(8, i, getBit(fmt, i));
+  setFunction(8, 7, getBit(fmt, 6));
+  setFunction(8, 8, getBit(fmt, 7));
+  setFunction(7, 8, getBit(fmt, 8));
+  for (let i = 9; i < 15; i++) setFunction(14 - i, 8, getBit(fmt, i));
+  for (let i = 0; i < 8; i++) setFunction(size - 1 - i, 8, getBit(fmt, i));
+  for (let i = 8; i < 15; i++) setFunction(8, size - 15 + i, getBit(fmt, i));
+
+  const quiet = 4;
+  const total = size + quiet * 2;
+  const rects = [];
+  for (let yy = 0; yy < size; yy++) {
+    for (let xx = 0; xx < size; xx++) {
+      if (modules[yy][xx]) rects.push(`M${xx + quiet},${yy + quiet}h1v1h-1z`);
+    }
+  }
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${total} ${total}" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="${rects.join('')}" fill="#000"/></svg>`;
+  return 'data:image/svg+xml;base64,' + btoa(svg);
+}
+
+function buildQrPayload(requestNo) {
+  return 'REQUEST:' + String(requestNo || '-').trim();
+}
+
+function buildReceiptHtml(r) {
+  const title = 'وصل إيداع طلب خدمة';
+  const todayText = formatDateOnly(String(r.depositDate).slice(0, 10));
+  const qrPayload = buildQrPayload(r.requestNo);
+  const qrDataUri = qrMakeDataUri(qrPayload);
+  return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escapeHtml(title)} - ${escapeHtml(r.requestNo)}</title>
+<style>
+  :root{--primary:#2986B0;--light:#7ED6D1;--accent:#F59E0B;--ink:#1f2937;--muted:#64748b;--line:#cfe3ec;--soft:#f8fbfc}
+  *{box-sizing:border-box;font-family:Cairo,Tahoma,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{margin:0;background:#eef5f7;color:var(--ink)}
+  .page{width:210mm;min-height:297mm;margin:0 auto;background:white;padding:8mm 9mm;display:flex;flex-direction:column;position:relative;overflow:visible}
+  .top-line{height:4px;background:linear-gradient(90deg,var(--primary),var(--light),var(--accent));border-radius:10px;margin-bottom:7px;flex:0 0 auto}
+  .header{display:grid;grid-template-columns:1fr 116px 1fr;align-items:center;gap:8px;border-bottom:1.5px solid var(--primary);padding-bottom:7px;margin-bottom:6px;flex:0 0 auto}
+  .head-side{font-size:8.6px;line-height:1.55;color:#334155;font-weight:600}
+  .head-side.left{text-align:left;direction:rtl}
+  .center{text-align:center}
+  .logo{width:54px;height:54px;object-fit:contain;border:1.5px solid var(--primary);border-radius:9px;margin-bottom:2px;background:#fff}
+  .assoc{font-weight:800;color:var(--primary);font-size:12px;line-height:1.2}
+  .subtitle{font-weight:700;font-size:8.2px;line-height:1.45}
+  .doc-title{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--light));color:white;border-radius:10px;padding:5px 22px;font-size:14px;font-weight:800;margin:0 auto 6px;box-shadow:0 5px 12px #0001}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:5px;flex:0 0 auto}
+  .box{border:1px solid var(--line);border-radius:7px;background:#fff;padding:4px 6px;min-height:34px;overflow-wrap:anywhere}
+  .box .lbl{font-size:7.8px;color:var(--muted);font-weight:800;margin-bottom:1px;line-height:1.25}
+  .box .val{font-size:10px;font-weight:800;color:#111827;line-height:1.25;overflow-wrap:anywhere}
+  .box.status-box{grid-column:span 2}
+  .note{border:1px solid #f4c76c;background:#fffbeb;border-radius:7px;padding:4px 7px;font-size:7.8px;line-height:1.55;margin-bottom:5px;flex:0 0 auto}
+  .section{border:1px solid var(--line);border-radius:8px;margin-top:5px;overflow:hidden;flex:0 0 auto;break-inside:avoid}
+  .section-title{background:linear-gradient(90deg,#eef8fb,#fff);color:var(--primary);font-weight:800;font-size:9px;padding:4px 7px;border-bottom:1px solid var(--line);line-height:1.35}
+  .receipt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:5px;background:white}
+  .receipt-field{border:1px solid #e2e8f0;border-radius:6px;padding:4px 5px;min-height:31px;background:#fff;overflow-wrap:anywhere;white-space:normal}
+  .receipt-label{font-size:7.4px;color:#64748b;font-weight:800;margin-bottom:1px;line-height:1.2}
+  .receipt-value{font-size:9.4px;font-weight:800;color:#111827;line-height:1.28;overflow-wrap:anywhere;word-break:break-word;white-space:normal}
+  .wide{grid-column:span 2}
+  .full{grid-column:1/-1}
+  .commitment{padding:5px 9px;font-size:8.4px;line-height:1.55;overflow-wrap:anywhere;white-space:pre-wrap}
+  .footer{margin-top:auto;border:1.5px solid var(--primary);border-radius:10px;padding:7px;background:#fff;display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:stretch;flex:0 0 auto;break-inside:avoid}
+  .qr-wrap{border-left:1px dashed #94a3b8;padding-left:8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .qr{width:62px;height:62px;image-rendering:pixelated;display:block}
+  .qr-label{font-size:7px;color:#64748b;font-weight:800;line-height:1.2}
+  .footer-content{display:flex;flex-direction:column;min-width:0}
+  .date-place{text-align:left;font-size:11px;font-weight:800;margin-bottom:4px;line-height:1.3}
+  .small-note{font-size:7px;color:#64748b;text-align:center;border-bottom:1px dashed #94a3b8;padding-bottom:4px;margin-bottom:6px;line-height:1.35}
+  .signatures{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;font-size:8.4px;font-weight:800;min-height:36px;line-height:1.35}
+  .signatures span{display:block;margin-top:5px;font-weight:600;color:#64748b}
+  @media print{body{background:white}.page{margin:0;box-shadow:none;width:210mm;min-height:297mm}.no-print{display:none}@page{size:A4;margin:0}}
+  @media(max-width:800px){.page{width:100%;min-height:auto;padding:12px}.header{grid-template-columns:1fr}.head-side,.head-side.left{text-align:center}.meta,.receipt-grid{grid-template-columns:1fr}.box.status-box,.wide{grid-column:auto}.footer{grid-template-columns:1fr;margin-top:14px}.qr-wrap{border-left:0;border-bottom:1px dashed #94a3b8;padding:0 0 8px}.signatures{grid-template-columns:1fr}.doc-title{font-size:13px;padding:6px 16px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top-line"></div>
+  <div class="header">
+    <div class="head-side right">
+      الجمهورية الجزائرية الديمقراطية الشعبية<br>
+      وزارة الداخلية والجماعات المحلية والتهيئة العمرانية<br>
+      ولاية الوادي - دائرة قمار
+    </div>
+    <div class="center">
+      ${r.logoUrl ? `<img class="logo" src="${escapeHtml(r.logoUrl)}" alt="شعار الجمعية">` : ''}
+      <div class="assoc">جمعية<br>الجواهر<br>بقمار</div>
+      <div class="subtitle">جمعية ذات طابع اجتماعي إنساني وخيري</div>
+    </div>
+    <div class="head-side left">
+      بيانات الجمعية<br>
+      رقم الاعتماد: 2018/10<br>
+      العنوان: قمار - ولاية الوادي<br>
+      الهاتف: 032233730
+    </div>
+  </div>
+  <div class="center"><div class="doc-title">${escapeHtml(title)}</div></div>
+  <div class="meta">
+    <div class="box"><div class="lbl">رقم الطلب</div><div class="val">${escapeHtml(r.requestNo)}</div></div>
+    <div class="box"><div class="lbl">تاريخ الإيداع</div><div class="val">${escapeHtml(r.depositDate)}</div></div>
+    <div class="box status-box"><div class="lbl">الحالة</div><div class="val">${escapeHtml(r.status)}</div></div>
+  </div>
+  <div class="note"><strong>تنبيه:</strong> هذا الوصل يثبت إيداع الطلب إلكترونيا لدى الجمعية، ولا يعد تأكيدا نهائيا للحجز إلا بعد المراجعة والاتصال بصاحب الطلب.</div>
+  <div class="section">
+    <div class="section-title">1) بيانات المواطن / مقدم الطلب</div>
+    <div class="receipt-grid">
+      ${buildReceiptRow('اسم مقدم الطلب', r.applicantName)}
+      ${buildReceiptRow('رقم الهاتف', r.contact)}
+      ${buildReceiptRow('البلدية / المدينة', r.city)}
+      ${buildReceiptRow('العنوان', r.address)}
+      ${buildReceiptRow('نوع الهوية', r.identityType)}
+      ${buildReceiptRow('رقم الهوية', r.identityNo)}
+      ${buildReceiptRow('جهة إصدار الهوية', r.identityIssuer)}
+      ${buildReceiptRow('تاريخ إصدار الهوية', formatDateOnly(r.identityIssueDate))}
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">2) بيانات الخدمة</div>
+    <div class="receipt-grid">
+      ${buildReceiptRow('نوع الخدمة', r.serviceName)}
+      ${buildReceiptRow('اسم ' + r.beneficiaryLabel, r.beneficiaryName)}
+      ${buildReceiptRow('نوع هوية ' + r.beneficiaryLabel, r.beneficiaryIdentityType)}
+      ${buildReceiptRow('رقم هوية ' + r.beneficiaryLabel, r.beneficiaryIdentityNo)}
+      ${buildReceiptRow('جهة إصدار هوية ' + r.beneficiaryLabel, r.beneficiaryIdentityIssuer)}
+      ${buildReceiptRow('تاريخ إصدار هوية ' + r.beneficiaryLabel, formatDateOnly(r.beneficiaryIdentityIssueDate))}
+      ${buildReceiptRow('صلة مقدم الطلب', r.relationship)}
+      ${buildReceiptRow('نوع النقل', r.tripType)}
+      ${buildReceiptRow('الولاية المتجه إليها', r.destinationState)}
+      ${buildReceiptRow('المسافة التقريبية', r.distanceKm && r.distanceKm !== '-' ? r.distanceKm + ' كم' : '-')}
+      ${buildReceiptRow('تاريخ الخدمة', formatDateOnly(r.loanDate))}
+      ${buildReceiptRow('وقت الخدمة', r.appointmentTime)}
+      ${buildReceiptRow('العودة / الانتهاء المتوقع', formatDateOnly(r.expectedReturnDate))}
+      <div class="receipt-field full"><div class="receipt-label">الوجهة / مكان الخدمة</div><div class="receipt-value">${escapeHtml(r.destination)}</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">3) بيانات المرافق</div>
+    <div class="receipt-grid">
+      ${r.hasCompanion ? `
+      ${buildReceiptRow('اسم المرافق', r.companionName)}
+      ${buildReceiptRow('هاتف المرافق', r.companionPhone)}
+      ${buildReceiptRow('صلة المرافق بـ' + r.beneficiaryLabel, r.companionRelation)}
+      ${buildReceiptRow('نوع هوية المرافق', r.companionIdentityType)}
+      ${buildReceiptRow('رقم هوية المرافق', r.companionIdentityNo)}
+      ${buildReceiptRow('جهة إصدار هوية المرافق', r.companionIdentityIssuer)}
+      ${buildReceiptRow('تاريخ إصدار هوية المرافق', formatDateOnly(r.companionIdentityIssueDate))}
+      ` : `<div class="receipt-field full"><div class="receipt-label">المرافق</div><div class="receipt-value">لا يوجد مرافق مسجل في هذا الطلب</div></div>`}
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">4) السيارة المطلوبة</div>
+    <div class="receipt-grid">
+      <div class="receipt-field wide"><div class="receipt-label">السيارة / نوع الخدمة المختار</div><div class="receipt-value">${escapeHtml(r.vehicleText)}</div></div>
+      ${buildReceiptRow('معرف السيارة', r.vehicleId)}
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">5) ملاحظات الطلب</div>
+    <div class="commitment">${escapeHtml(r.notes)}</div>
+  </div>
+  <div class="footer">
+    <div class="qr-wrap">
+      <img class="qr" src="${qrDataUri}" alt="رمز QR لرقم الطلب">
+      <div class="qr-label">رمز QR للتحقق</div>
+      <div class="qr-label">${escapeHtml(r.requestNo)}</div>
+    </div>
+    <div class="footer-content">
+      <div class="date-place">حرر بقمار في: ${escapeHtml(todayText)}</div>
+      <div class="small-note">يحتفظ المواطن بهذا الوصل إلى غاية معالجة الطلب. يمكن مسح رمز QR أو تقديم رقم الطلب عند التواصل مع الجمعية.</div>
+      <div class="signatures">
+        <div>     <span> </span></div>
+        <div>       <span> </span></div>
+        <div>   <span> </span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>`;
+}
+
+
+function receiptActionsHtml(requestNo) {
+  return `<div class="receipt-actions">
+    <button type="button" class="receipt-action-btn" onclick="printReceipt()">طباعة وصل الطلب</button>
+    <button type="button" class="receipt-action-btn secondary" onclick="downloadReceipt()">تنزيل وصل الطلب</button>
+  </div>`;
+}
+
+function waitForReceiptImages(win, timeoutMs = 1800) {
+  const images = Array.from(win.document.images || []);
+  if (!images.length) return Promise.resolve();
+  const waits = images.map(img => img.complete ? Promise.resolve() : new Promise(resolve => {
+    img.onload = img.onerror = resolve;
+  }));
+  return Promise.race([
+    Promise.all(waits),
+    new Promise(resolve => setTimeout(resolve, timeoutMs))
+  ]);
+}
+
+async function printReceipt() {
+  if (!lastReceiptHtml) {
+    setMsg('لا يوجد وصل جاهز للطباعة. يرجى إرسال الطلب أولا.', 'error');
+    return;
+  }
+  const win = window.open('', '_blank');
+  if (!win) {
+    setMsg('تعذر فتح نافذة الطباعة. يرجى السماح بالنوافذ المنبثقة ثم إعادة المحاولة.', 'error');
+    return;
+  }
+  win.document.open();
+  win.document.write(lastReceiptHtml);
+  win.document.close();
+  await waitForReceiptImages(win);
+  win.focus();
+  win.print();
+}
+
+function safeFileName(value) {
+  return String(value || 'طلب').replace(/[\\/:*?"<>|\s]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
+function downloadReceipt() {
+  if (!lastReceiptHtml) {
+    setMsg('لا يوجد وصل جاهز للتنزيل. يرجى إرسال الطلب أولا.', 'error');
+    return;
+  }
+  const blob = new Blob([lastReceiptHtml], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'وصل-طلب-' + safeFileName(lastReceiptNo || 'طلب') + '.html';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function today() {
@@ -365,9 +933,42 @@ function fileKey(file) {
   return file ? [file.name, file.size, file.lastModified].join('|') : '';
 }
 
+function dataUrlBytes(dataUrl) {
+  const comma = dataUrl.indexOf(',');
+  const base64 = comma >= 0 ? dataUrl.slice(comma + 1) : dataUrl;
+  return Math.ceil(base64.length * 0.75);
+}
+
+function shrinkCanvas(sourceCanvas, factor) {
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(320, Math.round(sourceCanvas.width * factor));
+  canvas.height = Math.max(320, Math.round(sourceCanvas.height * factor));
+  const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'medium';
+  ctx.drawImage(sourceCanvas, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
+
 function canvasToDataURLFast(canvas) {
   // ضغط أقوى لتقليل حجم البيانات وتسريع الإرسال، مع استعمال WebP عند توفره.
-  return supportsWebp ? canvas.toDataURL('image/webp', 0.38) : canvas.toDataURL('image/jpeg', 0.42);
+  const mime = supportsWebp ? 'image/webp' : 'image/jpeg';
+  const qualities = supportsWebp ? [0.30, 0.24, 0.20, 0.18] : [0.34, 0.29, 0.25, 0.22];
+  const targetBytes = 85 * 1024;
+  let working = canvas;
+  let best = working.toDataURL(mime, qualities[0]);
+
+  for (let round = 0; round < 3; round++) {
+    for (const q of qualities) {
+      const current = working.toDataURL(mime, q);
+      if (dataUrlBytes(current) < dataUrlBytes(best)) best = current;
+      if (dataUrlBytes(current) <= targetBytes) return current;
+    }
+    const largestSide = Math.max(working.width, working.height);
+    if (largestSide <= 360) break;
+    working = shrinkCanvas(working, 0.82);
+  }
+  return best;
 }
 
 async function compressImage(inputId) {
@@ -379,7 +980,7 @@ async function compressImage(inputId) {
   if (compressedCache.has(key)) return compressedCache.get(key);
 
   const job = (async () => {
-    const maxSide = 600;
+    const maxSide = 500;
     let bitmap;
     try {
       bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
@@ -577,6 +1178,7 @@ async function submitRequest() {
       data = {
         serviceType: 'medical',
         itemId: document.getElementById('itemId').value,
+        vehicleText: getSelectedOptionText('itemId'),
         borrower: document.getElementById('borrower').value,
         contact: document.getElementById('contact').value,
         address: document.getElementById('address').value,
@@ -640,6 +1242,7 @@ async function submitRequest() {
       data = {
         serviceType: 'burial',
         itemId: document.getElementById('burialItemId').value,
+        vehicleText: getSelectedOptionText('burialItemId'),
         borrower: document.getElementById('burialBorrower').value,
         contact: document.getElementById('burialContact').value,
         address: document.getElementById('burialAddress').value,
@@ -694,7 +1297,11 @@ async function submitRequest() {
       };
     }
     const result = await apiCall('submitExternalLoanRequest', [data]);
-    setMsg(' تم إرسال الطلب بنجاح! رقم الحجز: ' + (result.requestNo || ''), 'ok');
+    await ensureLogoDataUrl();
+    const receiptData = createReceiptData(data, result || {});
+    lastReceiptNo = receiptData.requestNo || '';
+    lastReceiptHtml = buildReceiptHtml(receiptData);
+    setMsg('تم إرسال الطلب بنجاح! رقم الحجز: ' + (receiptData.requestNo || '') + receiptActionsHtml(receiptData.requestNo), 'ok');
     document.querySelectorAll('input,textarea,select').forEach(el => {
       if (el.type === 'file') el.value = '';
       else if (!['loanDate','identityIssueDate','burialLoanDate','burialIdentityIssueDate','deceasedIdentityIssueDate'].includes(el.id)) el.value = '';
@@ -707,6 +1314,7 @@ async function submitRequest() {
     document.getElementById('extraServices').value = '0';
     document.getElementById('medicalPricePreview').classList.remove('active');
     document.getElementById('burialPricePreview').classList.remove('active');
+    compressedCache.clear();
   } catch (err) {
     setMsg(' حدث خطأ أثناء إرسال الطلب: ' + err.message, 'error');
     console.error(err);
@@ -718,9 +1326,12 @@ async function submitRequest() {
 async function loadFormData() {
   try {
     const data = await apiCall('getRequestFormData', []);
-    if (data.identity && data.identity.logoUrl) {
-      document.getElementById('logo').src = data.identity.logoUrl;
+    const logo = document.getElementById('logo');
+    if (logo) {
+      logo.src = CUSTOM_LOGO_URL;
+      logo.dataset.dataUrl = CUSTOM_LOGO_URL;
     }
+    warmLogoCache();
     
     // تحميل سيارات الإسعاف للخدمة الطبية
     const itemSelect = document.getElementById('itemId');
@@ -743,6 +1354,8 @@ async function loadFormData() {
 }
 
 window.onload = () => {
+  initLogoFallback();
+  warmLogoCache();
   document.getElementById('loanDate').value = today();
   document.getElementById('identityIssueDate').value = today();
   document.getElementById('burialLoanDate').value = today();
