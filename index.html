@@ -1247,7 +1247,7 @@ function attachBackgroundCompression() {
     const el = document.getElementById(id);
     if (el) el.addEventListener('change', () => {
       warmCompress(id);
-      setMsg('تم اختيار الصورة وسيتم ضغطها في الخلفية قبل الإرسال.', 'ok');
+      setMsg('راجع المعلومات قبل الارسال.', 'ok');
     }, { passive: true });
   });
 }
